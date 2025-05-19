@@ -203,7 +203,9 @@
   max-width: 200px;
 }
 
-
+@media (max-width: 768px) {
+  .icon-btn-expand { display: none; }
+}
 
 
   </style>
@@ -212,19 +214,17 @@
   
 
 <!-- NAVBAR -->
-<nav class="navbar fixed-top d-flex justify-content-between align-items-center custom-toolbar">
-<div class="logo-wrapper">
-  <a href="index.html">
-    <img src="Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
-  </a>
-</div>
-
+<nav class="navbar fixed-top d-flex justify-content-between align-items-center">
+  <div>
+    <a href="index.html">
+      <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+    </a>
+  </div>
   <div class="d-flex align-items-center gap-3">
     <button class="btn btn-orange">Publier</button>
 
-  
-        <div class="hide-on-small">
-      <button class="icon-btn-expand" title="Mes réservés" onclick="window.location.href='reserves.html'">
+    
+    <button class="icon-btn-expand" title="Mes réservés" onclick="window.location.href='reserves.html'">
       <span class="material-symbols-outlined">bookmark</span>
       <span class="btn-label">Mes réservés</span>
     </button>
@@ -245,8 +245,6 @@
       <span class="material-symbols-outlined">store</span>
       <span class="btn-label">Boutique</span>
     </button>
-</div>
-
 
 
     <button class="icon-btn-expand" title="help" onclick="window.location.href='quest.html'">
@@ -274,6 +272,7 @@
         <li><a class="dropdown-item" href="messages.html">Messages</a></li>
         <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
         <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
+        <li><a class="dropdown-item" href="store.html">Boutique</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
       </ul>
