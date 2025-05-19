@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Se connecter - Trooky</title>
+
+  <!-- Bootstrap + Fontes -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
+  
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      padding-top: 80px;
+    }
+    .navbar {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .btn-create {
+      background: #ff681d;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 600;
+    }
+    .btn-create:hover {
+      background: #ff8a1f;
+    }
+    .btn-login {
+      background: transparent;
+      color: #ff681d;
+      border: 2px solid #ff681d;
+      border-radius: 30px;
+      padding: 7px 20px;
+      font-weight: 600;
+    }
+    .btn-login:hover {
+      background: #ff681d;
+      color: #fff;
+    }
+    .navbar-nav {
+      gap: 10px;
+    }
+    .custom-toggler-icon::before {
+      content: "\2630"; /* ☰ */
+      font-size: 24px;
+    }
+    .custom-toggler-icon.open::before {
+      content: "\2715"; /* ✕ */
+      font-size: 26px;
+    }
+    @media (max-width: 991px) {
+      .navbar-nav {
+        flex-direction: column;
+      }
+    }
+    .form-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    .form-label {
+      font-weight: 600;
+      color: #333;
+    }
+    .form-control::placeholder {
+      color: #999 !important;
+      opacity: 1;
+    }
+    .btn-orange {
+      background: #ff681d;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 50px;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+    .btn-orange:hover {
+      background: #ff8a1f;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #555;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><img src="img/Trooky_logo.png" alt="Trooky Logo" style="width:130px;"></a>
+      <button class="navbar-toggler" id="menuButton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="custom-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item me-3">
+            <select id="languageSelect" class="form-select w-auto">
+              <option value="fr" selected>FR</option>
+              <option value="pt">PT</option>
+              <option value="en">EN</option>
+              <option value="es">ES</option>
+            </select>
+          </li>
+          <li class="nav-item">
+            <a href="inscription.html" id="createAccountBtn" class="btn-create" style="text-decoration:none;">
+              Créer un compte
+            </a>
+          </li>
+          <li class="nav-item">
+            <a id="loginBtn" class="btn-login" href="login.html" style="text-decoration: none;"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- FORMULÁRIO -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8 col-sm-10">
+        <div class="form-container">
+          <h2 id="titleForm" class="text-center" style="color:#ff681d; font-weight:700;">Se connecter</h2>
+          <form action="#" method="POST" class="mt-4">
+            <div class="mb-3">
+              <label id="labelEmail" for="email" class="form-label">Adresse Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Entrez votre email" required>
+            </div>
+            <div class="mb-3">
+              <label id="labelPassword" for="password" class="form-label">Mot de Passe</label>
+              <input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe" required>
+            </div>
+            <button type="submit" id="btnSubmit" class="btn-orange mt-3">Se connecter</button>
+            <a href="inscription.html" class="back-link" id="linkBack">← Retour à l'inscription</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const translations = {
+      fr: {
+        createAccount: "Créer un compte", login: "Se connecter",
+        createAccountHref: "inscription.html", loginHref: "login.html",
+        title: "Se connecter",
+        emailLabel: "Adresse Email", emailPlaceholder: "Entrez votre email",
+        passwordLabel: "Mot de Passe", passwordPlaceholder: "Entrez votre mot de passe",
+        submitButton: "Se connecter", backLink: "← Retour à l'inscription"
+      },
+      pt: {
+        createAccount: "Criar conta", login: "Entrar",
+        createAccountHref: "inscricao.html", loginHref: "login.html",
+        title: "Entrar",
+        emailLabel: "Endereço de Email", emailPlaceholder: "Insira seu email",
+        passwordLabel: "Senha", passwordPlaceholder: "Digite sua senha",
+        submitButton: "Entrar", backLink: "← Voltar para criar conta"
+      },
+      en: {
+        createAccount: "Create Account", login: "Sign In",
+        createAccountHref: "inscription.html", loginHref: "login.html",
+        title: "Sign In",
+        emailLabel: "Email Address", emailPlaceholder: "Enter your email",
+        passwordLabel: "Password", passwordPlaceholder: "Enter your password",
+        submitButton: "Sign In", backLink: "← Back to Sign Up"
+      },
+      es: {
+        createAccount: "Crear cuenta", login: "Iniciar sesión",
+        createAccountHref: "inscripcion.html", loginHref: "login.html",
+        title: "Iniciar sesión",
+        emailLabel: "Correo Electrónico", emailPlaceholder: "Introduce tu correo",
+        passwordLabel: "Contraseña", passwordPlaceholder: "Introduce tu contraseña",
+        submitButton: "Iniciar sesión", backLink: "← Volver a crear cuenta"
+      }
+    };
+
+    document.getElementById('languageSelect').addEventListener('change', function() {
+      const lang = this.value;
+      const t = translations[lang];
+
+      // Navbar links
+      const createBtn = document.getElementById('createAccountBtn');
+      createBtn.innerText = t.createAccount;
+      createBtn.setAttribute('href', t.createAccountHref);
+
+      const loginBtn = document.getElementById('loginBtn');
+      loginBtn.innerText = t.login;
+      loginBtn.onclick = () => window.location.href = t.loginHref;
+
+      // Form texts
+      document.getElementById('titleForm').innerText = t.title;
+      document.getElementById('labelEmail').innerText = t.emailLabel;
+      document.getElementById('email').placeholder = t.emailPlaceholder;
+      document.getElementById('labelPassword').innerText = t.passwordLabel;
+      document.getElementById('password').placeholder = t.passwordPlaceholder;
+      document.getElementById('btnSubmit').innerText = t.submitButton;
+      const backLink = document.getElementById('linkBack');
+      backLink.innerText = t.backLink;
+      backLink.setAttribute('href', t.createAccountHref);
+    });
+
+    // Mobile menu icon toggle
+    document.getElementById('menuButton').addEventListener('click', function() {
+      this.querySelector('.custom-toggler-icon').classList.toggle('open');
+    });
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const event = new Event('change');
+      document.getElementById('languageSelect').dispatchEvent(event);
+    });
+  </script>
+</body>
+</html>

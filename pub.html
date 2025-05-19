@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mes publications- Trooky</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
+  
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      padding-top: 90px;
+    }
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 12px 20px;
+      z-index: 1000;
+    }
+    .btn-orange {
+      background-color: #ff681d;
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border: none;
+    }
+    .icon-btn {
+      background: none;
+      border: none;
+      color: #ff681d;
+      font-size: 20px;
+    }
+    .coin-display {
+      border: 0.5px solid #ff681d;
+      border-radius: 30px;
+      padding: 6px 12px;
+      font-weight: 600;
+      color: #000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-object {
+      border-radius: 12px;
+      background-color: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      padding: 20px;
+      position: relative;
+    }
+    .status {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .status-dispo {
+      color: #28a745;
+    }
+    .status-echange {
+      color: #6c757d;
+    }
+    .qr-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      border: none;
+      background: none;
+      color: #ff681d;
+      font-size: 2.5rem;
+      cursor: pointer;
+    }
+    .qr-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+    .qr-box {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      max-width: 300px;
+    }
+    .qr-box h6 {
+      color: #ff681d;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .stat-box {
+      background: #ff681d;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .stat-box i {
+      font-size: 1.5rem;
+    }
+    .stat-box strong {
+      display: block;
+      font-size: 2rem;
+      margin-top: 5px;
+    }
+    .search-box {
+      max-width: 300px;
+    }
+    .nav-pills .nav-link.active {
+      background-color: #ff681d;
+    }
+
+    .coin-badge {
+      color: #ff681d;
+      border-radius: 30%;
+      font-size: 18px;
+    }
+    .icon-btn-expand {
+      background: none;
+      border: none;
+      color: #ff681d;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 20px;
+      padding: 6px 10px;
+      transition: background-color 0.8s ease, padding-right 0.8s ease;
+      overflow: hidden;
+    }
+
+    .icon-btn-expand .btn-label {
+      white-space: nowrap;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: max-width 0.5s ease, opacity 0.5s ease;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .icon-btn-expand:hover .btn-label {
+      opacity: 1;
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar fixed-top d-flex justify-content-between align-items-center">
+    <div>
+      <a href="index.html">
+        <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+      </a>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-orange" onclick="window.location.href='creer.html' ">Publier</button>
+  
+      
+      <button class="icon-btn-expand" title="Mes réservés" onclick="window.location.href='reserves.html'">
+        <span class="material-symbols-outlined">bookmark</span>
+        <span class="btn-label">Mes réservés</span>
+      </button>
+      
+      <button class="icon-btn-expand" title="Mes publications" onclick="window.location.href='pub.html'">
+        <span class="material-symbols-outlined">outbox</span>
+        <span style="font-size: 14px;
+      font-weight: 600;">Mes publications</span>
+      </button>
+      
+      
+      <button class="icon-btn-expand" title="Messages" onclick="window.location.href='messages.html'">
+        <span class="material-symbols-outlined">mail</span>
+        <span class="btn-label">Messages</span>
+      </button>
+
+      <button class="icon-btn-expand" title="Boutique">
+        <span class="material-symbols-outlined">store</span>
+        <span class="btn-label">Boutique</span>
+      </button>
+
+      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='quest.html'">
+        <span class="material-symbols-outlined">help</span>
+      </button>
+      
+  
+      <a href="coins.html" style="text-decoration: none;">
+        <div class="coin-display" title="Portefeuille">
+        
+          <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
+          <span class="coin-badge">10 TRC</span>
+        </div>
+      </a>
+      
+      <div class="dropdown">
+        <button class="btn p-0 border-0 bg-transparent d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profil" class="rounded-circle" width="36" height="36" onclick="window.location.href='profil.html'" />
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
+          <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
+          <li><a class="dropdown-item" href="messages.html">Messages</a></li>
+          <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
+          <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENU -->
+  <div class="container mt-2">
+    <h2 class="mb-4 text-center"><span class="material-symbols-outlined">outbox</span> Mes publications</h2>
+
+    <div class="row text-center mb-4">
+      <div class="col-md-4"><div class="stat-box"><i class="bi bi-plus-circle"></i><strong>3</strong>Total ajoutés</div></div>
+      <div class="col-md-4"><div class="stat-box"><i class="bi bi-check2"></i><strong>1</strong>Échangés</div></div>
+      <div class="col-md-4"><div class="stat-box"><i class="bi bi-box"></i><strong>2</strong>Disponibles</div></div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+      <ul class="nav nav-pills" id="objectTabs">
+        <li class="nav-item"><button class="nav-link active" onclick="showTab('dispo')">Objets Disponibles</button></li>
+        <li class="nav-item"><button class="nav-link" onclick="showTab('echange')">Objets Échangés</button></li>
+      </ul>
+      <input type="text" class="form-control search-box" id="searchInput" placeholder="Rechercher un objet..." oninput="filterObjects()" />
+    </div>
+    
+    <style>
+      /* Nav inativa: texto escuro */
+#objectTabs .nav-link {
+  color: #333 !important;
+}
+
+/* Nav ativa: fundo laranja, texto branco */
+#objectTabs .nav-link.active {
+  background-color: #ff681d !important;
+  color: #fff !important;
+}
+
+    </style>
+
+<!-- === OBJETS DISPONIBLES === -->
+<div id="dispo" class="tab-content">
+  <div class="row g-3" id="dispo-list">
+
+    <!-- Mesa de café -->
+    <div class="col-md-6 object-card" data-name="Mesa de café">
+      <div class="card-object d-flex gap-3 align-items-start">
+        <img
+          src="img/mesa.jpg"
+          alt="Mesa de café"
+          style="width:100px; height:100px; object-fit:cover; border-radius:8px;"
+        />
+        <div class="flex-grow-1">
+          <button class="qr-btn"
+                  onclick="showQRCode('Mesa de café','Mesa de café - 12/05/2025')">
+            <i class="bi bi-qr-code"></i>
+          </button>
+          <h6>Mesa de café</h6>
+          <p class="mb-1 text-muted">État : Bon état</p>
+          <p class="mb-1 text-muted">Ajouté le : 12 mai 2025</p>
+          <p class="mb-1 text-muted">
+            Prix : <strong>2 Trooky Coins</strong>
+          </p>
+          <p class="res-count fw-bold fs-6"
+             style="background-color:#d3d3d3;
+                    padding:6px 12px;
+                    border-left:4px solid #ff681d;
+                    border-radius:6px;
+                    margin-bottom:10px;">
+            2 personnes ont réservé cet objet
+          </p>
+          <div>
+            <span class="status status-dispo">Statut : Disponible</span>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary mt-3"
+                  onclick="showReservations('Mesa de café')">
+            Voir réservations
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Casaco d’hiver -->
+    <div class="col-md-6 object-card" data-name="Casaco d’hiver">
+      <div class="card-object d-flex gap-3 align-items-start">
+        <img
+          src="img/casaco.png"
+          alt="Casaco d’hiver"
+          style="width:100px; height:100px; object-fit:cover; border-radius:8px;"
+        />
+        <div class="flex-grow-1">
+          <button class="qr-btn"
+                  onclick="showQRCode('Casaco d’hiver','Casaco d’hiver - 09/05/2025')">
+            <i class="bi bi-qr-code"></i>
+          </button>
+          <h6>Casaco d’hiver</h6>
+          <p class="mb-1 text-muted">État : Comme neuf</p>
+          <p class="mb-1 text-muted">Ajouté le : 09 mai 2025</p>
+          <p class="mb-1 text-muted">
+            Prix : <strong>3 Trooky Coins</strong>
+          </p>
+          <p class="res-count fw-bold fs-6"
+             style="background-color: #d3d3d3;
+                    padding:6px 12px;
+                    border-left:4px solid #ff681d;
+                    border-radius:6px;
+                    margin-bottom:10px;">
+            1 personne a réservé cet objet
+          </p>
+          <div>
+            <span class="status status-dispo">Statut : Disponible</span>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary mt-3"
+                  onclick="showReservations('Casaco d’hiver')">
+            Voir réservations
+          </button>
+        </div>
+      </div>
+    </div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-md-6 object-card" data-name="Casaco d’hiver">
+      <div class="card-object d-flex gap-3 align-items-start">
+        <img
+          src="img/nike.jpg"
+          alt="Chassures"
+          style="width:100px; height:100px; object-fit:cover; border-radius:8px;"
+        />
+        <div class="flex-grow-1">
+          <button class="qr-btn"
+                  onclick="showQRCode('Casaco d’hiver','Casaco d’hiver - 09/05/2025')">
+            <i class="bi bi-qr-code"></i>
+          </button>
+          <h6>Chassures</h6>
+          <p class="mb-1 text-muted">État : Comme neuf</p>
+          <p class="mb-1 text-muted">Ajouté le : 12 mai 2025</p>
+          <p class="mb-1 text-muted">
+            Prix : <strong>30 Trooky Coins</strong>
+          </p>
+          <p class="res-count fw-bold fs-6"
+             style="background-color: #d3d3d3;
+                    padding:6px 12px;
+                    border-left:4px solid #ff681d;
+                    border-radius:6px;
+                    margin-bottom:10px;">
+            15 personnes ont réservé cet objet
+          </p>
+          <div>
+            <span class="status status-dispo">Statut : Disponible</span>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary mt-3"
+                  onclick="showReservations('Casaco d’hiver')">
+            Voir réservations
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+<!-- === OBJETS ÉCHANGÉS === -->
+<div id="echange" class="tab-content" style="display: none;">
+  <div class="row g-3" id="echange-list">
+
+    <!-- Tasse décorative -->
+    <div class="col-md-6 object-card" data-name="Tasse décorative">
+      <div class="card-object d-flex gap-3 align-items-start">
+        <img
+          src="img/tasse.jpg"
+          alt="Tasse décorative"
+          style="width:100px; height:100px; object-fit:cover; border-radius:8px;"
+        />
+        <div class="flex-grow-1">
+          <h6>Tasse décorative</h6>
+          <p class="mb-1 text-muted">État : Bon état</p>
+          <p class="mb-1 text-muted">Ajouté le : 28 avril 2025</p>
+          <p class="mb-1 text-muted">Échangé le : 03 mai 2025</p>
+          <p class="mb-1 text-muted">
+            Prix : <strong>1 Trooky Coin</strong>
+          </p>
+          <span class="status status-echange">Statut : Échangé</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </div>
+
+  <!-- MODAIS -->
+  <div class="qr-modal" id="qrModal">
+    <div class="qr-box">
+      <h6 id="qrTitle">QR Code de l'objet</h6>
+      <div id="qrCodeContainer"></div>
+      <button class="btn btn-orange mt-3" onclick="hideQRCode()">Fermer</button>
+    </div>
+  </div>
+
+  <div class="qr-modal" id="reservationModal">
+    <div class="qr-box" style="max-width: 400px;">
+      <h6 id="reservationTitle">Réservations pour l'objet</h6>
+      <div id="reservationList"></div>
+      <button class="btn btn-orange mt-3" onclick="hideReservationModal()">Fermer</button>
+    </div>
+  </div>
+
+  
+
+  <!-- SCRIPTS -->
+  <script>
+    // Tabs & Search
+    function showTab(tab) {
+      document.getElementById('dispo').style.display = tab === 'dispo' ? 'block' : 'none';
+      document.getElementById('echange').style.display = tab === 'echange' ? 'block' : 'none';
+      document.querySelectorAll('#objectTabs .nav-link').forEach((btn, i) => {
+        btn.classList.toggle('active', (tab === 'dispo' && i === 0) || (tab === 'echange' && i === 1));
+      });
+      filterObjects();
+    }
+    function filterObjects() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const active = document.querySelector('#objectTabs .nav-link.active').innerText.includes('Disponibles') ? 'dispo' : 'echange';
+      document.querySelectorAll(`#${active}-list .object-card`).forEach(card => {
+        card.style.display = card.getAttribute('data-name').toLowerCase().includes(q) ? 'block' : 'none';
+      });
+    }
+
+    // QR Code
+    function showQRCode(name, text) {
+      document.getElementById('qrModal').style.display = 'flex';
+      document.getElementById('qrTitle').innerText = name;
+      const container = document.getElementById('qrCodeContainer');
+      container.innerHTML = '';
+      QRCode.toCanvas(document.createElement('canvas'), text, (err, canvas) => {
+        if (!err) container.appendChild(canvas);
+      });
+    }
+    function hideQRCode() {
+      document.getElementById('qrModal').style.display = 'none';
+    }
+
+    // Mock reservations data
+    const mockReservations = {
+      "Mesa de café": [
+        { id: 1, nom: "Lucas Martin", date: "14/05/2025" },
+        { id: 2, nom: "Emma Dupont", date: "15/05/2025" }
+      ],
+      "Casaco d’hiver": [
+        { id: 3, nom: "Jean Petit", date: "13/05/2025" }
+      ]
+    };
+
+    // Reservation logic
+    const acceptedReservations = {}; // { "objectName": resId }
+
+    function showReservations(objetNom) {
+      const modal = document.getElementById('reservationModal');
+      const title = document.getElementById('reservationTitle');
+      const list = document.getElementById('reservationList');
+      title.innerText = `Réservations pour "${objetNom}"`;
+      list.innerHTML = '';
+
+      const reservations = mockReservations[objetNom] || [];
+      if (reservations.length === 0) {
+        list.innerHTML = '<p class="text-muted">Aucune réservation pour cet objet.</p>';
+      } else {
+        reservations.forEach(res => {
+          const isAccepted = acceptedReservations[objetNom] === res.id;
+          const div = document.createElement('div');
+          div.className = 'mb-3 p-2 border rounded';
+          div.innerHTML = `
+            <strong>${res.nom}</strong><br>
+            <small>Réservé le : ${res.date}</small><br>
+            <button class="btn btn-sm btn-success mt-2 me-2" onclick="toggleAccept(${res.id}, '${objetNom}')" ${acceptedReservations[objetNom] && !isAccepted ? 'disabled' : ''}>
+              ${isAccepted ? 'Désaccepter' : 'Accepter'}
+            </button>
+            <button class="btn btn-sm btn-danger mt-2" onclick="refuserReservation(${res.id}, '${objetNom}')" ${acceptedReservations[objetNom] ? 'disabled' : ''}>
+              Refuser
+            </button>
+          `;
+          list.appendChild(div);
+        });
+      }
+      modal.style.display = 'flex';
+    }
+
+    function hideReservationModal() {
+      document.getElementById('reservationModal').style.display = 'none';
+    }
+
+    function toggleAccept(resId, objetNom) {
+      // If already accepted, unaccept; otherwise accept
+      if (acceptedReservations[objetNom] === resId) {
+        acceptedReservations[objetNom] = null;
+      } else {
+        acceptedReservations[objetNom] = resId;
+      }
+      showReservations(objetNom);
+    }
+
+    function refuserReservation(resId, objetNom) {
+      alert(`Réservation refusée pour ${objetNom} (ID: ${resId})`);
+      hideReservationModal();
+    }
+
+    // Inject "X personnes ont réservé cet objet"
+    function countReservations(objetNom) {
+      return (mockReservations[objetNom] || []).length;
+    }
+    function injectReservationCount() {
+      document.querySelectorAll('.object-card').forEach(card => {
+        const name = card.getAttribute('data-name');
+        const body = card.querySelector('.card-object');
+        if (!body.querySelector('.res-count')) {
+          const count = countReservations(name);
+          const p = document.createElement('p');
+          p.className = 'mb-1 text-muted res-count';
+          p.innerText = count
+            ? `${count} personne${count > 1 ? 's' : ''} ont réservé cet objet`
+            : 'Aucune réservation';
+          body.insertBefore(p, body.querySelector('span.status'));
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      injectReservationCount();
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

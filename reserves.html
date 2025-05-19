@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mes Réservations - Trooky</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
+
+  
+  <style>
+    /* BADGES das abas */
+.custom-badge {
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-left: 4px;
+  color: #ff681d; /* cor laranja nas abas inativas */
+}
+
+/* Quando a aba está ativa */
+.nav-pills .nav-link.active .custom-badge {
+  color: white; /* número branco sobre fundo laranja */
+}
+
+/* Corrige texto azul das abas inativas */
+.nav-pills .nav-link {
+  color: #333; /* ou #555 para cinza escuro */
+  font-weight: 500;
+}
+
+/* Aba ativa mantém cor branca */
+.nav-pills .nav-link.active {
+  background-color: #ff681d;
+  color: #fff;
+}
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      padding-top: 90px;
+    }
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 12px 20px;
+      z-index: 1000;
+    }
+    .btn-orange {
+      background-color: #ff681d;
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border: none;
+      transition: background-color .2s;
+    }
+    .btn-orange:hover { background-color: #e55a12; }
+    .coin-display {
+      border: .5px solid #ff681d; border-radius: 30px;
+      padding: 6px 12px; font-weight: 600; color: #000;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* ===============================
+       BOTÕES EXPAND E BADGE OVERFLOW
+    ================================ */
+    .icon-btn-expand {
+      background: none;
+      border: none;
+      color: #ff681d;
+      font-size: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 20px;
+      padding: 6px 10px;
+      transition: background-color .3s, padding-right .3s;
+      position: relative;
+      overflow: visible !important;    /* <— libera o badge para cima */
+    }
+ 
+    .icon-btn-expand .btn-label {
+      white-space: nowrap;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: max-width .3s, opacity .3s;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .icon-btn-expand:hover .btn-label {
+      opacity: 1;
+      max-width: 200px;
+    }
+
+/* badge de notificação melhorado para texto como "2 acceptés" */
+.badge-notif {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: #ff681d;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+  border: 1.5px solid white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  z-index: 9999;
+}
+.card-object h5 {
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.card-object h5 a {
+  color: #333; /* cor base discreta */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+
+
+    .card-object {
+      background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.05);
+      padding: 20px; position: relative; overflow: hidden; transition: transform .2s;
+    }
+    .card-object:hover { transform: translateY(-4px); }
+    .card-object p { margin-bottom: 6px; }
+    .status {
+      font-weight: 600; padding: 4px 12px; border-radius: 20px;
+      display: inline-block; font-size: .85rem;
+    }
+    .status-pending { background: #fff3cd; color: #856404; }
+    .status-accepted { background: #d4edda; color: #155724; }
+    .status-exchanged {
+  background: #e9ecef;   /* cinza claro */
+  color: #444;           /* cinza mais carregado */
+}
+
+    .camera-btn {
+      position: absolute; top: 20px; right: 20px;
+      background: #ff681d; border: none; color: #fff;
+      border-radius: 50%; width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
+      transition: background .2s, transform .2s;
+    }
+    .camera-btn:hover { background: #e55a12; transform: scale(1.1); }
+    .nav-pills .nav-link {
+      border-radius: 20px; margin-right: 8px;
+      transition: background .2s, color .2s;
+    }
+    .nav-pills .nav-link.active {
+      background-color: #ff681d; color: #fff;
+    }
+    .search-box {
+      max-width: 300px; border-radius: 30px;
+      border: 1px solid #ff681d; padding-left: 16px;
+    }
+    .camera-modal {
+      display: none; position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,.85);
+      justify-content: center; align-items: center;
+      z-index: 2000; padding: 20px;
+    }
+    .camera-box {
+      position: relative; width: 100%; max-width: 400px;
+      aspect-ratio: 3/4; background-color: #000;
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 0 20px rgba(255,104,29,.6);
+      border: 3px solid #ff681d;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+    }
+    .camera-box video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .close-camera {
+      position: absolute; top: 12px; right: 12px;
+      background: #ff681d; border: none; color: #fff;
+      border-radius: 50%; width: 35px; height: 35px;
+      font-size: 1.2rem; display: flex;
+      align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,.3);
+      z-index: 10;
+    }
+    .camera-instructions {
+      position: absolute; bottom: 12px;
+      color: #fff; font-weight: 500;
+      background: rgba(0,0,0,.4);
+      padding: 10px 16px; border-radius: 12px;
+      text-align: center; font-size: .95rem;
+    }
+    .success-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,.7);
+      display: flex; justify-content: center; align-items: center;
+      z-index: 3000; opacity: 0; pointer-events: none;
+    }
+    .success-overlay.active {
+      pointer-events: auto;
+      animation: fadeInOut 3s ease-in-out forwards;
+    }
+    .success-content {
+      background: #fff; border-radius: 12px;
+      padding: 30px; text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 12px;
+    }
+    .success-content i {
+      font-size: 3rem; color: #ff681d;
+    }
+    .success-content p {
+      margin: 0; font-size: 1.2rem; font-weight: 600;
+      color: #ff681d;
+    }
+    @keyframes fadeInOut {
+      0%,100% { opacity: 0; }
+      10%,90% { opacity: 1; }
+    }
+    footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #222;
+  color: #eee;
+  text-align: center;
+  padding: 20px;
+  font-size: 1rem;
+  z-index: 100;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar fixed-top d-flex justify-content-between align-items-center">
+    <div><a href="vendas.html"><img src="img/Trooky_logo.png" alt="Trooky Logo" style="height:40px;"></a></div>
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn-orange">Publier</button>
+
+      <!-- Mes réservés com badge -->
+      <button class="icon-btn-expand position-relative" title="Mes réservés" onclick="window.location.href='reserves.html'">
+        <span class="material-symbols-outlined">bookmark</span>
+        <span class="fw-semibold text-orange" style="font-size: 15px;">Mes réservés</span>
+        <span id="notif-badge" class="badge-notif">0</span>
+      </button>
+      
+
+      <button class="icon-btn-expand" title="Mes publications" onclick="window.location.href='pub.html'">
+        <span class="material-symbols-outlined">outbox</span><span class="btn-label">Mes publications</span></button>
+      <button class="icon-btn-expand" title="Messages"><span class="material-symbols-outlined">mail</span><span class="btn-label">Messages</span></button>
+      
+      <button class="icon-btn-expand" title="Boutique">
+        <span class="material-symbols-outlined">store</span>
+        <span class="btn-label">Boutique</span>
+      </button>
+      
+
+      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='quest.html'">
+        <span class="material-symbols-outlined">help</span>
+      </button>
+      
+      
+      
+      <a href="coins.html" style="text-decoration:none;">
+        <div class="coin-display" title="Portefeuille">
+          <img src="trookycoin-icon.png" alt="TRC" style="height:25px; width:25px;">
+          <span class="coin-badge">10 TRC</span>
+        </div>
+      </a>
+      <div class="dropdown">
+        <button class="btn p-0 border-0 bg-transparent d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profil" class="rounded-circle" width="36" height="36" onclick="window.location.href='profil.html'" />
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
+          <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
+          <li><a class="dropdown-item" href="messages.html">Messages</a></li>
+          <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
+          <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- Adicione no <head> ou antes do seu código HTML -->
+    <style>
+        /* Container da descrição */
+        #tab-description-container {
+          background-color: white;
+          border-radius: 0.5rem;
+          padding: 1.5rem 2rem;
+          margin-bottom: 1.5rem;
+          display: flex;
+          align-items: start;
+          min-height: 4.5rem;
+          transition: opacity 0.3s ease;
+        }
+      
+        /* Estado durante a troca (fade) */
+        #tab-description-container.fading {
+          opacity: 0.5;
+        }
+      
+        /* Ícone à esquerda */
+        #desc-icon {
+          font-size: 2rem;
+          margin-right: 1rem;
+          transition: color 0.3s ease;
+        }
+      
+        /* Texto da descrição */
+        #tab-description {
+          font-size: 1rem;
+          line-height: 1.5;
+          font-weight: 500;
+          color: #333;
+          transition: color 0.3s ease;
+        }
+      </style>
+      
+      <!-- CONTEÚDO -->
+      <div class="container mt-2">
+        <h2 class="mb-4 text-center">
+          <span class="material-symbols-outlined">bookmark</span> Mes Réservés
+        </h2>
+        
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+          <ul class="nav nav-pills mb-2" id="statusFilter">
+            <li class="nav-item">
+              <button class="nav-link active" id="pending-tab-btn" type="button">
+                Réservés <span id="pending-count" class="badge ms-1 custom-badge">(0)</span>
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" id="accepted-tab-btn" type="button">
+                Réservations Acceptées <span id="accepted-count" class="badge ms-1 custom-badge">(0)</span>
+              </button>
+            </li>
+            <li class="nav-item">
+              <button class="nav-link" id="exchanged-tab-btn" type="button">
+                Échanges <span id="exchanged-count" class="badge ms-1 custom-badge">(0)</span>
+              </button>
+            </li>
+          </ul>
+          
+      
+          <input
+            type="text"
+            class="form-control search-box"
+            id="searchInput"
+            placeholder="Rechercher un objet..."
+            oninput="renderReservations()"
+            style="max-width: 250px;"
+          />
+        </div>
+      
+        <!-- DESCRIÇÃO DAS ABAS (melhor design) -->
+        <div id="tab-description-container">
+          <span id="desc-icon" class="material-symbols-outlined text-success">check_circle</span>
+          <div id="tab-description">
+            Objets prêts pour toi ! Clique sur la caméra pour scanner le QR code.
+          </div>
+        </div>
+      
+        <div class="row g-3" id="reserved-list"></div>
+        
+      </div>
+
+      
+      <script>
+        const descriptions = {
+          "accepted-tab-btn": {
+            text: "Objets prêts pour toi ! Clique sur la caméra pour scanner le QR code.",
+            icon: "check_circle",
+            colorClass: "text-success"
+          },
+          "pending-tab-btn": {
+            text: "En pause… Tes demandes patientent encore une réponse.",
+            icon: "hourglass_empty",
+            colorClass: "text-warning"
+          },
+          "exchanged-tab-btn": {
+            text: "C’est fait ! Découvre ici tes échanges déjà bouclés avec succès.",
+            icon: "swap_horiz",
+            colorClass: "text-primary"
+          }
+        };
+      
+        const container = document.getElementById('tab-description-container');
+        const iconEl    = document.getElementById('desc-icon');
+        const textEl    = document.getElementById('tab-description');
+      
+        document.querySelectorAll('#statusFilter .nav-link').forEach(button => {
+          button.addEventListener('click', () => {
+            // troca active nos botões
+            document.querySelectorAll('#statusFilter .nav-link')
+                    .forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+      
+            // anima fade
+            container.classList.add('fading');
+            setTimeout(() => {
+              // atualiza conteúdo e ícone
+              const desc = descriptions[button.id];
+              textEl.textContent = desc.text;
+              iconEl.textContent = desc.icon;
+      
+              // atualiza cor do ícone
+              iconEl.className = `material-symbols-outlined ${desc.colorClass}`;
+      
+              // finaliza animação
+              container.classList.remove('fading');
+            }, 250);
+          });
+        });
+      </script>
+      
+
+  <!-- Modal câmera + overlay sucesso -->
+  <div class="camera-modal" id="cameraModal">
+    <div class="camera-box">
+      <button class="close-camera" type="button" onclick="closeCamera()"><i class="bi bi-x-lg"></i></button>
+      <video id="cameraStream" autoplay playsinline></video>
+      <canvas id="qrCanvas" style="display:none;"></canvas>
+      <div class="camera-instructions">Scanne le QR code du object</div>
+    </div>
+    
+  </div>
+
+  
+  <div id="successOverlay" class="success-overlay">
+    <div class="success-content">
+      <i class="bi bi-check-circle-fill"></i>
+      <p>Échange effectué avec succès</p>
+    </div>
+    
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const mesReservations = [
+      { objet: "Mesa de café", date: "14/05/2025", statut: "accepted", location: "Salle Commune", price: 2 },
+      { objet: "Gros livre de peinture", date: "13/05/2025", statut: "pending", location: "Bibliothèque", price: 3 },
+      { objet: "Autre chose", date: "12/05/2025", statut: "pending", location: "Bureau A", price: 2 },
+      { objet: "Livre de Python", date: "05/05/2025", statut: "exchanged", location: "A101", price: 1 }
+    ];
+  
+    let currentFilter = "pending";
+    let currentStream = null, scanInterval = null, isScanning = false;
+  
+    function filterByStatus(status) {
+      currentFilter = status;
+      document.querySelectorAll('#statusFilter .nav-link').forEach(btn => btn.classList.remove('active'));
+  
+      const map = { pending: 0, accepted: 1, exchanged: 2 };
+      document.querySelectorAll('#statusFilter .nav-link')[map[status]].classList.add('active');
+  
+      renderReservations();
+    }
+  
+    function renderReservations() {
+      const container = document.getElementById("reserved-list");
+      container.innerHTML = "";
+      const q = document.getElementById("searchInput").value.toLowerCase();
+  
+      const filtered = mesReservations.filter(r =>
+        r.statut === currentFilter && r.objet.toLowerCase().includes(q)
+      );
+  
+      if (!filtered.length) {
+        container.innerHTML = '<p class="text-muted text-center">Aucune réservation trouvée.</p>';
+        updateCounts();
+        return;
+      }
+  
+      filtered.forEach(res => {
+        const col = document.createElement("div");
+        col.className = "col-md-6";
+  
+        let stClass = "";
+        let stLabel = "";
+        if (res.statut === "accepted") {
+          stClass = "status-accepted";
+          stLabel = "Réservation Acceptée";
+        } else if (res.statut === "pending") {
+          stClass = "status-pending";
+          stLabel = "Réservé";
+        } else {
+          stClass = "status-exchanged";
+          stLabel = "Échange";
+        }
+  
+        const isLinked = res.objet === "Gros livre de peinture";
+        const titleHtml = isLinked
+          ? `<h5><a href="detail.html" class="text-decoration-none text-dark">${res.objet}</a></h5>`
+          : `<h5>${res.objet}</h5>`;
+  
+        col.innerHTML = `
+          <div class="card-object">
+            ${res.statut === "accepted"
+              ? `<button class="camera-btn" type="button"><i class="bi bi-camera-fill"></i></button>` : ''}
+            ${titleHtml}
+            <p class="mb-1 text-muted">Réservé le : ${res.date}</p>
+            <p class="mb-1 text-muted">Lieu : ${res.location}</p>
+            <p class="mb-1 text-muted">Prix : <strong>${res.price} TRC</strong></p>
+            <span class="status ${stClass}">${stLabel}</span>
+          </div>`;
+  
+        if (res.statut === "accepted") {
+          col.querySelector('.camera-btn').addEventListener('click', openCamera);
+        }
+  
+        container.appendChild(col);
+      });
+  
+      updateCounts();
+    }
+  
+    function updateCounts() {
+      const acceptedCount = mesReservations.filter(r => r.statut === 'accepted').length;
+      const pendingCount = mesReservations.filter(r => r.statut === 'pending').length;
+      const exchangedCount = mesReservations.filter(r => r.statut === 'exchanged').length;
+  
+      document.getElementById('accepted-count').textContent = `(${acceptedCount})`;
+      document.getElementById('pending-count').textContent = `(${pendingCount})`;
+      document.getElementById('exchanged-count').textContent = `(${exchangedCount})`;
+  
+      const notifBadge = document.getElementById('notif-badge');
+      notifBadge.textContent = `${acceptedCount}`;
+      notifBadge.style.display = acceptedCount > 0 ? 'flex' : 'none';
+    }
+  
+    function openCamera() {
+      const modal = document.getElementById("cameraModal"),
+        video = document.getElementById("cameraStream"),
+        canvas = document.getElementById("qrCanvas"),
+        ctx = canvas.getContext("2d");
+  
+      isScanning = false;
+  
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+        .then(stream => {
+          currentStream = stream;
+          video.srcObject = stream;
+          modal.style.display = "flex";
+  
+          video.onloadedmetadata = () => {
+            canvas.width = video.videoWidth || 400;
+            canvas.height = video.videoHeight || 300;
+  
+            scanInterval = setInterval(() => {
+              if (isScanning) return;
+  
+              ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+              const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height),
+                code = jsQR(imgData.data, canvas.width, canvas.height);
+  
+              if (code) {
+                isScanning = true;
+                setTimeout(() => {
+                  showSuccess();
+                  closeCamera();
+                }, 1000);
+              }
+            }, 350);
+          };
+        })
+        .catch(err => alert("Impossible d'accéder à la caméra : " + err.message));
+    }
+  
+    function closeCamera() {
+      if (scanInterval) clearInterval(scanInterval);
+      if (currentStream) currentStream.getTracks().forEach(t => t.stop());
+      document.getElementById("cameraModal").style.display = "none";
+    }
+  
+    function showSuccess() {
+      const overlay = document.getElementById("successOverlay");
+      overlay.classList.add("active");
+      setTimeout(() => overlay.classList.remove("active"), 3000);
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabs = ['pending', 'accepted', 'exchanged'];
+      document.querySelectorAll('#statusFilter .nav-link')
+        .forEach((btn, i) => btn.addEventListener('click', () => filterByStatus(tabs[i])));
+      filterByStatus('pending'); // inicia com Réservés
+      renderReservations();
+    });
+  </script>
+  
+  
+  
+</body>
+</html>

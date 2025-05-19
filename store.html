@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boutique Achat - Trooky</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
+  
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      padding-top: 90px;
+    }
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 12px 20px;
+      z-index: 1000;
+    }
+    .btn-orange {
+      background-color: #ff681d;
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border: none;
+    }
+    .icon-btn {
+      background: none;
+      border: none;
+      color: #ff681d;
+      font-size: 20px;
+    }
+    .coin-display {
+      border: 0.5px solid #ff681d;
+      border-radius: 30px;
+      padding: 6px 12px;
+      font-weight: 600;
+      color: #000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+
+    footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #222;
+  color: #eee;
+  text-align: center;
+  padding: 20px;
+  font-size: 1rem;
+  z-index: 100;
+}
+
+    .coin-badge {
+      color: #ff681d;
+      border-radius: 30%;
+      font-size: 18px;
+    }
+    .icon-btn-expand {
+      background: none;
+      border: none;
+      color: #ff681d;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 20px;
+      padding: 6px 10px;
+      transition: background-color 0.8s ease, padding-right 0.8s ease;
+      overflow: hidden;
+    }
+
+    .icon-btn-expand .btn-label {
+      white-space: nowrap;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: max-width 0.5s ease, opacity 0.5s ease;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .icon-btn-expand:hover .btn-label {
+      opacity: 1;
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar fixed-top d-flex justify-content-between align-items-center">
+    <div>
+      <a href="index.html">
+        <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+      </a>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-orange" onclick="window.location.href='creer.html' ">Publier</button>
+  
+      
+      <button class="icon-btn-expand" title="Mes réservés" onclick="window.location.href='reserves.html'">
+        <span class="material-symbols-outlined">bookmark</span>
+        <span class="btn-label">Mes réservés</span>
+      </button>
+
+      <button class="icon-btn-expand" title="Mes publications" onclick="window.location.href='pub.html'">
+        <span class="material-symbols-outlined">bookmark</span>
+        <span class="btn-label">Mes publications</span>
+      </button>
+      
+      
+      <button class="icon-btn-expand" title="Messages" onclick="window.location.href='Messages.html'">
+        <span class="material-symbols-outlined">mail</span>
+        <span class="btn-label">Messages</span>
+      </button>
+
+
+      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='store.html'">
+        <span class="material-symbols-outlined">store</span>
+        <span style="font-size: 14px;
+      font-weight: 600;">Boutique</span>
+      </button>
+
+
+      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='quest.html'">
+        <span class="material-symbols-outlined">help</span>
+      </button>
+      
+  
+      <a href="coins.html" style="text-decoration: none;">
+        <div class="coin-display" title="Portefeuille">
+        
+          <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
+          <span class="coin-badge">10 TRC</span>
+        </div>
+      </a>
+      
+      <div class="dropdown">
+        <button class="btn p-0 border-0 bg-transparent d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profil" class="rounded-circle" width="36" height="36" onclick="window.location.href='profil.html'" />
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
+          <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
+          <li><a class="dropdown-item" href="messages.html">Messages</a></li>
+          <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
+          <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENU -->
+<div  class="container" style="margin-top: -10px;">
+    
+
+<!-- MINI PANIER -->
+<div class="mini-cart d-flex align-items-center mb-4 px-4 py-3 justify-content-between">
+  <div class="d-flex align-items-center">
+    <i class="bi bi-cart-fill fs-3 me-3"></i>
+    <div>
+      <span class="fw-bold">Mon Panier</span><br>
+      <small><span id="cart-count">0</span> article(s)</small>
+    </div>
+  </div>
+  <style>
+    .menu-item {
+      background: transparent;
+      border: none;
+      color: #444;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.875rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 0.25rem;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none; 
+
+    }
+  
+    .menu-item i {
+      color: #444;
+      transition: color 0.2s;
+    }
+  
+    .menu-item.menu-item-active {
+      background-color: #ff6600;
+      color: #fff;
+    }
+  
+    .menu-item.menu-item-active i {
+      color: #fff;
+    }
+  
+    .menu-item:hover {
+      text-decoration: none;
+    }
+  
+    .menu-item:hover:not(.menu-item-active) {
+      color: #444;
+    }
+  
+    .menu-item:hover:not(.menu-item-active) i {
+      color: #444;
+    }
+  
+    .menu-item.menu-item-active:hover {
+      color: #fff;
+    }
+  
+    .menu-item.menu-item-active:hover i {
+      color: #fff;
+    }
+  </style>
+  
+  <div class="d-flex gap-3">
+    <!-- Achats ativo -->
+    <a href="store.html" class="menu-item menu-item-active">
+      <i class="bi bi-bag-fill"></i> Achats
+    </a>
+  
+    <!-- Voir mon panier -->
+    <a href="painer.html" class="menu-item">
+      <i class="bi bi-cart-fill"></i> Voir mon panier
+    </a>
+  
+    <!-- Mes coupons -->
+    <a href="coupon.html" class="menu-item">
+      <i class="bi bi-ticket-fill"></i> Mes coupons
+    </a>
+  </div>
+  
+  
+</div>
+
+<!-- CARROUSEL D'IMAGES -->
+<div id="carousel" class="mb-4 position-relative overflow-hidden rounded-4" style="height: 200px;">
+  <img id="carousel-img" src="https://picsum.photos/1200/400?random=1" class="w-100 h-100 object-fit-cover rounded-4" />
+</div>
+
+<!-- ===== LISTE DES CATÉGORIES ===== -->
+<div class="d-flex flex-wrap justify-content-between category-list">
+  <div class="category-item active" data-category="Gastronomie">
+    <div class="cat-icon"><i class="bi bi-cup-straw"></i></div>
+    <small>Gastronomie</small>
+  </div>
+  <div class="category-item" data-category="VoyagesLoisirs">
+    <div class="cat-icon"><i class="bi bi-airplane"></i></div>
+    <small>Voyages &amp; Loisirs</small>
+  </div>
+  <div class="category-item" data-category="Evenements">
+    <div class="cat-icon"><i class="bi bi-calendar-event"></i></div>
+    <small>Événements</small>
+  </div>
+  <div class="category-item" data-category="Magasins">
+    <div class="cat-icon"><i class="bi bi-bag-fill"></i></div>
+    <small>Magasins</small>
+  </div>
+  <div class="category-item" data-category="Cinemas">
+    <div class="cat-icon"><i class="bi bi-film"></i></div>
+    <small>Cinémas</small>
+  </div>
+  <div class="category-item" data-category="Parcs">
+    <div class="cat-icon"><i class="bi bi-tree-fill"></i></div>
+    <small>Parcs</small>
+  </div>
+</div>
+
+<!-- ===== ÁREA DE CONTEÚDO DINÂMICO ===== -->
+<div id="category-content" class="mb-4">
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cartCountEl = document.getElementById('cart-count');
+      let count = 0;
+  
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', () => {
+          count++;
+          cartCountEl.textContent = count;
+        });
+      });
+    });
+  </script>
+  
+  
+  <div class="category-info active" data-category="Gastronomie">
+    <p>Dégustez les meilleures saveurs avec nos partenaires gastronomiques.</p>
+  
+    <div class="coupon-search">
+      <input type="text" placeholder="Rechercher un coupon…" />
+    </div>
+
+    <div class="coupon-list">
+      <!-- KFC -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/kfc.com" alt="Logo KFC">
+        <h3>E-CARTE CADEAU KFC</h3>
+    
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">25,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">20,00 €</span>
+          </div>
+        </div>
+    
+        <div class="discount-tag">-20%</div>
+    
+        <p class="price"><span class="amount">500</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+    
+      <!-- McDonald’s -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/mcdonalds.com" alt="Logo McDonald’s">
+        <h3>E-CARTE CADEAU McDonald’s</h3>
+    
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">22,50 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">18,00 €</span>
+          </div>
+        </div>
+    
+        <div class="discount-tag">-20%</div>
+    
+        <p class="price"><span class="amount">450</span> TrookyCoins</p>
+        <style>
+          .add-to-cart {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+          }
+        
+          .add-to-cart.added {
+            background-color: #6c757d !important; /* cinza escuro */
+            color: #fff !important;
+          }
+        
+          .add-to-cart i {
+            font-size: 1rem;
+            transition: color 0.3s;
+          }
+        </style>
+        
+        <button class="add-to-cart" id="cartButton">
+          <i class="bi bi-plus-circle"></i> Ajouter au panier
+        </button>
+        
+        <script>
+          const cartButton = document.getElementById('cartButton');
+          let isAdded = false;
+        
+          cartButton.addEventListener('click', () => {
+            isAdded = !isAdded;
+        
+            if (isAdded) {
+              cartButton.classList.add('added');
+              cartButton.innerHTML = '<i class="bi bi-x-circle"></i> Retirer du panier';
+            } else {
+              cartButton.classList.remove('added');
+              cartButton.innerHTML = '<i class="bi bi-plus-circle"></i> Ajouter au panier';
+            }
+          });
+        </script>
+        
+      </div>
+    
+      <!-- Burger King -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/burgerking.com" alt="Logo Burger King">
+        <h3>E-CARTE CADEAU Burger King</h3>
+    
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">24,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">19,20 €</span>
+          </div>
+        </div>
+    
+        <div class="discount-tag">-20%</div>
+    
+        <p class="price"><span class="amount">480</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+    
+      <!-- Starbucks -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/starbucks.com" alt="Logo Starbucks">
+        <h3>E-CARTE CADEAU Starbucks</h3>
+    
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">15,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">12,00 €</span>
+          </div>
+        </div>
+    
+        <div class="discount-tag">-20%</div>
+    
+        <p class="price"><span class="amount">300</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+    
+      <!-- CROUS / Resto U -->
+      <div class="coupon-card">
+        <img src="img/resto.png" alt="Logo CROUS" style="width: 900px;">
+        <h3>Repas CROUS - Resto U</h3>
+    
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">3,30 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">1,65 €</span>
+          </div>
+        </div>
+    
+        <div class="discount-tag">-50%</div>
+    
+        <p class="price"><span class="amount">40</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+    </div>
+      
+  <style>
+    .price-info {
+  margin: 15px 0;
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+  width: 180px;
+}
+
+.price-info .label {
+  display: block;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 3px;
+}
+
+.price-info .euro,
+.price-info .trooky {
+  display: block;
+  font-size: 1rem;
+  color: #333;
+}
+
+.price-info .trooky strong {
+  color: #ff681d;
+}
+
+.discount-tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff681d;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 6px 10px;
+  border-radius: 50px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.coupon-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+    .category-info.active {
+      background: #fafafa;
+      padding: 20px;
+      border-radius: 8px;
+    }
+  
+    .category-info p {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+  
+    .coupon-search {
+      margin-bottom: 20px;
+    }
+  
+    .coupon-search input {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+  
+ 
+  
+    .coupon-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+  
+    .coupon-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+  
+    .coupon-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+  
+    .coupon-card img {
+      max-width: 80px;
+      margin-bottom: 15px;
+    }
+  
+    .coupon-card h3 {
+      font-size: 1.1rem;
+      margin: 10px 0;
+      color: #222;
+    }
+  
+    .coupon-card .price {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin: 12px 0;
+      color: #ff681d;
+    }
+  
+    .coupon-card .price .amount {
+      font-size: 1.6rem;
+    }
+  
+    .coupon-card .add-to-cart {
+      display: inline-block;
+      background: #ff681d;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+  
+    .coupon-card .add-to-cart:hover {
+      background: #ff681d;
+    }
+  </style>
+  </div>
+
+
+
+  <div class="category-info" data-category="VoyagesLoisirs">
+    <p>Explorez de nouveaux horizons avec des offres exceptionnelles.</p>
+  
+    <div class="coupon-search">
+      <input type="text" placeholder="Rechercher un coupon…" />
+    </div>
+  
+    <div class="coupon-list">
+
+      <!-- SNCF -->
+      <div class="coupon-card">
+        <img src="img/Logo_SNCF_(2011).svg.png" alt="Logo SNCF">
+        <h3>Billet de train SNCF</h3>
+        <div class="price-info">
+          <div class="public-price"><span class="label">Prix public</span><span class="euro">45,00 €</span></div>
+          <div class="discounted-price"><span class="label">Votre prix</span><span class="trooky">36,00 €</span></div>
+        </div>
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">900</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Disneyland Paris -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/disneylandparis.com" alt="Logo Disneyland Paris">
+        <h3>Entrée Disneyland Paris</h3>
+        <div class="price-info">
+          <div class="public-price"><span class="label">Prix public</span><span class="euro">79,00 €</span></div>
+          <div class="discounted-price"><span class="label">Votre prix</span><span class="trooky">63,20 €</span></div>
+        </div>
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">1580</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- BlaBlaCar -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/blablacar.fr" alt="Logo BlaBlaCar">
+        <h3>Crédit BlaBlaCar</h3>
+        <div class="price-info">
+          <div class="public-price"><span class="label">Prix public</span><span class="euro">20,00 €</span></div>
+          <div class="discounted-price"><span class="label">Votre prix</span><span class="trooky">16,00 €</span></div>
+        </div>
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">400</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Parc Astérix -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/parcasterix.fr" alt="Logo Parc Astérix">
+        <h3>Billet Parc Astérix</h3>
+        <div class="price-info">
+          <div class="public-price"><span class="label">Prix public</span><span class="euro">55,00 €</span></div>
+          <div class="discounted-price"><span class="label">Votre prix</span><span class="trooky">44,00 €</span></div>
+        </div>
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">1100</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- FlixBus -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/flixbus.fr" alt="Logo FlixBus">
+        <h3>Code FlixBus</h3>
+        <div class="price-info">
+          <div class="public-price"><span class="label">Prix public</span><span class="euro">25,00 €</span></div>
+          <div class="discounted-price"><span class="label">Votre prix</span><span class="trooky">20,00 €</span></div>
+        </div>
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">500</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Airbnb -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/airbnb.com" alt="Logo Airbnb">
+        <h3>Crédit hébergement Airbnb</h3>
+        <div class="price-info">
+          <div class="public-price"><span class="label">Prix public</span><span class="euro">100,00 €</span></div>
+          <div class="discounted-price"><span class="label">Votre prix</span><span class="trooky">80,00 €</span></div>
+        </div>
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">2000</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Musée du Louvre -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/louvre.fr" alt="Logo Louvre">
+        <h3>Entrée Musée du Louvre</h3>
+        <div class="price-info">
+          <div class="public-price"><span class="label">Prix public</span><span class="euro">17,00 €</span></div>
+          <div class="discounted-price"><span class="label">Votre prix</span><span class="trooky">13,60 €</span></div>
+        </div>
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">340</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Center Parcs -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/centerparcs.fr" alt="Logo Center Parcs">
+        <h3>Séjour week-end Center Parcs</h3>
+        <div class="price-info">
+          <div class="public-price"><span class="label">Prix public</span><span class="euro">150,00 €</span></div>
+          <div class="discounted-price"><span class="label">Votre prix</span><span class="trooky">120,00 €</span></div>
+        </div>
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">3000</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Fnac Spectacles -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/fnacspectacles.com" alt="Logo Fnac Spectacles">
+        <h3>Bon cadeau spectacles</h3>
+        <div class="price-info">
+          <div class="public-price"><span class="label">Prix public</span><span class="euro">30,00 €</span></div>
+          <div class="discounted-price"><span class="label">Votre prix</span><span class="trooky">24,00 €</span></div>
+        </div>
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">600</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Puy du Fou -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/puydufou.com" alt="Logo Puy du Fou">
+        <h3>Billet Puy du Fou</h3>
+        <div class="price-info">
+          <div class="public-price"><span class="label">Prix public</span><span class="euro">40,00 €</span></div>
+          <div class="discounted-price"><span class="label">Votre prix</span><span class="trooky">32,00 €</span></div>
+        </div>
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">800</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+    </div>
+  </div>
+  
+
+  <div class="category-info" data-category="Evenements">
+    <p>Profitez d’événements exclusifs à prix réduit.</p>
+  
+    <div class="coupon-search">
+      <input type="text" placeholder="Rechercher un événement…" />
+    </div>
+  
+    <div class="coupon-list">
+      <!-- Concert Paris -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/accorarena.com" alt="Concert Accor Arena">
+        <h3>Concert à l’Accor Arena</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">60,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">48,00 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">1200</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Festival Lyon -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/nuitsdefourviere.com" alt="Logo Festival">
+        <h3>Festival Nuits de Fourvière</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">40,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">32,00 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">800</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Match PSG -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/psg.fr" alt="Logo PSG">
+        <h3>Billet Match PSG</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">75,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">60,00 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">1500</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+  <div class="category-info" data-category="Magasins">
+    <p>Faites du shopping dans vos magasins préférés avec des réductions.</p>
+  
+    <div class="coupon-search">
+      <input type="text" placeholder="Rechercher un magasin…" />
+    </div>
+  
+    <div class="coupon-list">
+      <!-- Zara -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/zara.com" alt="Logo Zara">
+        <h3>E-Carte Cadeau Zara</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">50,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">40,00 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">1000</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- FNAC -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/fnac.com" alt="Logo FNAC">
+        <h3>Carte Cadeau FNAC</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">30,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">24,00 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">600</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Decathlon -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/decathlon.fr" alt="Logo Decathlon">
+        <h3>Carte Cadeau Decathlon</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">40,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">32,00 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">800</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Sephora -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/sephora.fr" alt="Logo Sephora">
+        <h3>Carte Cadeau Sephora</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">25,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">20,00 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">500</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <div class="category-info" data-category="Cinemas">
+    <p>Vivez le meilleur du cinéma à prix réduit.</p>
+  
+    <div class="coupon-search">
+      <input type="text" placeholder="Rechercher une séance…" />
+    </div>
+  
+    <div class="coupon-list">
+      <!-- UGC -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/ugc.fr" alt="Logo UGC">
+        <h3>Place de cinéma UGC</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">13,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">10,40 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">260</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Pathé Gaumont -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/cinemaspathegaumont.com" alt="Logo Pathé Gaumont">
+        <h3>Billet Pathé Gaumont</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">14,50 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">11,60 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">290</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- MK2 -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/mk2.com" alt="Logo MK2">
+        <h3>Entrée cinéma MK2</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">12,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">9,60 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">240</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- CGR -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/cgrcinemas.fr" alt="Logo CGR">
+        <h3>Billet CGR Cinémas</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">11,50 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">9,20 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">230</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <div class="category-info" data-category="Parcs">
+    <p>Découvrez des parcs à thème, nature ou aventure à prix réduit.</p>
+  
+    <div class="coupon-search">
+      <input type="text" placeholder="Rechercher un parc…" />
+    </div>
+  
+    <div class="coupon-list">
+      <!-- Parc Astérix -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/parcasterix.fr" alt="Logo Parc Astérix">
+        <h3>Entrée Parc Astérix</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">51,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">40,80 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">1020</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Futuroscope -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/futuroscope.com" alt="Logo Futuroscope">
+        <h3>Billet Futuroscope</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">48,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">38,40 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">960</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Puy du Fou -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/puydufou.com" alt="Logo Puy du Fou">
+        <h3>Billet Puy du Fou</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">45,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">36,00 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">900</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+  
+      <!-- Jardin d’Acclimatation -->
+      <div class="coupon-card">
+        <img src="https://logo.clearbit.com/jardindacclimatation.fr" alt="Logo Jardin d’Acclimatation">
+        <h3>Entrée Jardin d’Acclimatation</h3>
+  
+        <div class="price-info">
+          <div class="public-price">
+            <span class="label">Prix public</span>
+            <span class="euro">7,00 €</span>
+          </div>
+          <div class="discounted-price">
+            <span class="label">Votre prix</span>
+            <span class="trooky">5,60 €</span>
+          </div>
+        </div>
+  
+        <div class="discount-tag">-20%</div>
+        <p class="price"><span class="amount">140</span> TrookyCoins</p>
+        <button class="add-to-cart">Ajouter au panier</button>
+      </div>
+    </div>
+  </div>
+  
+
+</div>
+
+
+
+<!-- TEXTE DE LA CATÉGORIE SÉLECTIONNÉE -->
+<div class="category-description text-center mb-4 fw-medium text-muted">
+
+</div>
+
+<style>
+  .text-orange {
+    color: #ff681d;
+  }
+
+  .btn-outline-orange {
+    border: 1px solid #ff681d;
+    color: #ff681d;
+  }
+
+  .btn-outline-orange:hover {
+    background-color: #ff681d;
+    color: white;
+  }
+
+  .mini-cart {
+    background-color: white;
+   
+    border-radius: 12px;
+    color: #795548;
+  }
+
+  .mini-cart i {
+    color: #ff681d;
+  }
+
+  .category-list {
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .category-item {
+    width: 120px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: normal; /* Permite quebra se necessário */
+  }
+
+  .cat-icon {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    margin: 0 auto 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #555;
+    transition: all 0.3s ease;
+  }
+
+  .category-item small {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #222;
+    transition: color 0.3s;
+    white-space: nowrap; /* Impede quebra de linha */
+  }
+
+  .category-item.active .cat-icon {
+    background-color: #ff681d;
+    color: #fff;
+    border-color: #ff681d;
+  }
+
+  .category-item.active small {
+    color: #ff681d;
+  }
+
+  .category-item:hover .cat-icon {
+    border-color: #ff681d;
+  }
+
+  #carousel {
+    max-height: 200px;
+  }
+
+  .object-fit-cover {
+    object-fit: cover;
+  }
+  /* Oculta todos os conteúdos das categorias por padrão */
+.category-info {
+  display: none;
+}
+
+/* Apenas o conteúdo da categoria ativa será exibido */
+.category-info.active {
+  display: block;
+}
+
+</style>
+
+
+
+  </div>
+
+ 
+<!-- ===== JS ===== -->
+<script>
+  // CAROUSEL AUTOMATIQUE
+  const carouselImages = [
+    "https://picsum.photos/1200/400?random=1",
+    "https://picsum.photos/1200/400?random=2",
+    "https://picsum.photos/1200/400?random=3",
+    "https://picsum.photos/1200/400?random=4"
+  ];
+  let idx = 0;
+  setInterval(() => {
+    idx = (idx + 1) % carouselImages.length;
+    document.getElementById("carousel-img").src = carouselImages[idx];
+  }, 1000);
+
+  // INTERAÇÃO CATEGORIAS → mostra/oculta bloco em #category-content
+  const cats = document.querySelectorAll('.category-item');
+  const infos = document.querySelectorAll('.category-info');
+
+  // Ao carregar: exibe o conteúdo da categoria que já tem .active
+  window.addEventListener('DOMContentLoaded', () => {
+    const initial = document.querySelector('.category-item.active');
+    if (initial) {
+      const cat = initial.dataset.category;
+      document.querySelector(`.category-info[data-category="${cat}"]`)
+              .classList.add('active');
+    }
+  });
+
+  cats.forEach(el => {
+    el.addEventListener('click', () => {
+      // limpa estados
+      cats.forEach(x => x.classList.remove('active'));
+      infos.forEach(x => x.classList.remove('active'));
+      // ativa clicado + conteúdo correspondente
+      el.classList.add('active');
+      const key = el.dataset.category;
+      document.querySelector(`.category-info[data-category="${key}"]`)
+              .classList.add('active');
+    });
+  });
+</script>
+  
+
+  
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

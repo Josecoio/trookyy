@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Créer une Annonce - Trooky</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
+
+  
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      padding-top: 90px;
+    }
+    .btn-orange {
+      background-color: #ff681d;
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      border: none;
+      padding: 10px 24px;
+    }
+    .form-control, .form-select {
+      border-radius: 8px;
+    }
+    .form-label {
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+    .photo-upload {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .photo-box {
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      color: #888;
+    }
+    .footer {
+      background-color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      color: #999;
+      border-top: 1px solid #ddd;
+      margin-top: 60px;
+    }
+    .coin-badge {
+      color: #ff681d;
+      border-radius: 30%;
+      font-size: 18px;
+    }
+
+    .icon-btn-expand {
+  background: none;
+  border: none;
+  color: #ff681d;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 20px;
+  padding: 6px 10px;
+  transition: background-color 0.8s ease, padding-right 0.8s ease;
+  overflow: hidden;
+}
+
+
+
+.icon-btn-expand .btn-label {
+  white-space: nowrap;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: max-width 0.5s ease, opacity 0.5s ease;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.icon-btn-expand:hover .btn-label {
+  opacity: 1;
+  max-width: 200px;
+}
+
+
+.dropdown-menu {
+      min-width: 200px;
+      font-size: 0.95rem;
+      padding: 10px 0;
+    }
+    .dropdown-menu .dropdown-item {
+      padding: 10px 20px;
+      transition: background 0.2s;
+    }
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 12px 20px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar fixed-top d-flex justify-content-between align-items-center">
+    <div>
+      <a href="index.html">
+        <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+      </a>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-orange">Publier</button>
+  
+      
+      <button class="icon-btn-expand" title="Mes réservés" onclick="window.location.href='reserves.html'">
+        <span class="material-symbols-outlined">bookmark</span>
+        <span class="btn-label">Mes réservés</span>
+      </button>
+      
+      <button class="icon-btn-expand" title="Mes publications" onclick="window.location.href='pub.html'">
+        <span class="material-symbols-outlined">outbox</span>
+        <span class="btn-label">Mes publications</span>
+      </button>
+      
+      
+      <button class="icon-btn-expand" title="Messages">
+        <span class="material-symbols-outlined">mail</span>
+        <span class="btn-label">Messages</span>
+      </button>
+  
+      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='quest.html'">
+        <span class="material-symbols-outlined">help</span>
+      </button>
+      
+      
+      
+  
+      <a href="coins.html" style="text-decoration: none;">
+        <div class="coin-display" title="Portefeuille">
+        
+          <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
+          <span class="coin-badge">10 TRC</span>
+        </div>
+      </a>
+      
+      <div class="dropdown">
+        <button class="btn p-0 border-0 bg-transparent d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profil" class="rounded-circle" width="36" height="36" onclick="window.location.href='profil.html'" />
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
+          <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
+          <li><a class="dropdown-item" href="messages.html">Messages</a></li>
+          <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
+          <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- FORMULAIRE -->
+  <div class="container mt-4 mb-5">
+    <h2 class="mb-4">Créer une annonce</h2>
+    <form>
+
+      <div class="mb-3">
+        <label class="form-label">Titre de votre annonce</label>
+        <input type="text" class="form-control" maxlength="50" placeholder="Par exemple une table, un réfrigérateur, un livre...">
+        <small class="text-muted">50 caractères maximum</small>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description de votre annonce</label>
+        <textarea class="form-control" maxlength="500" rows="4" placeholder="Par exemple, une table en bois clair, à retirer entre 14h et 16h. Donnez un maximum de détails (couleur, taille, etc.) pour augmenter vos chances de donner votre objet rapidement."></textarea>
+        <small class="text-muted">500 caractères max.</small>
+      </div>
+
+
+     <!-- Estilos para linha selecionada -->
+<style>
+  .selected-row {
+    background-color: #ff681d !important;
+    color: white !important;
+  }
+  .selected-row td {
+    background-color: #ff681d !important;
+    color: white !important;
+  }
+</style>
+
+<div class="mb-4">
+  <!-- Sélection de catégorie -->
+  <div class="mb-3">
+    <label class="form-label">Catégorie</label>
+    <select class="form-select" id="categorieSelect" onchange="afficherTableCategorie()">
+      <option value="">-- Sélectionner --</option>
+      <option value="Livres">Livres</option>
+      <option value="Vêtements">Vêtements</option>
+      <option value="Électroniques">Électroniques</option>
+      <option value="Cuisine">Cuisine</option>
+      <option value="Mobilité">Mobilité</option>
+      <option value="Décoration">Décoration</option>
+      <option value="Accessoires">Accessoires</option>
+      <option value="Bureau">Bureau</option>
+      <option value="Instruments de musique">Instruments de musique</option>
+      <option value="Loisirs créatifs">Loisirs créatifs</option>
+      <option value="Diversos">Diversos</option>
+    </select>
+  </div>
+
+
+
+
+  <!-- Tabela com sous-catégories -->
+  <div id="tableContainer" class="mb-3" style="display:none;"></div>
+
+  <!-- Campo de preço (sempre visível) -->
+  <div class="mb-3">
+    <label class="form-label">Prix souhaité (en trookycoins)</label>
+    <p class="text-muted">
+      Afin de promouvoir une économie circulaire sur Trooky, tous les objets sont évalués en <strong>trookycoins</strong>. Veuillez choisir une catégorie ci-dessous pour consulter les types disponibles et leurs prix autorisés.
+    </p>
+    <input type="number" class="form-control" id="prixInput" placeholder="Ex : 25" oninput="verifierPrix()">
+    <div class="form-text text-danger" id="erreurPrix" style="display:none;">
+      Ce prix est hors de l’intervalle recommandé. Pour mieux promouvoir l’économie circulaire, utilisez un prix dans la plage suggérée.
+    </div>
+  </div>
+</div>
+
+<script>
+const data = {
+  "Livres": [
+    { nom: "Manuels scolaires", min: 15, max: 60, icon: "menu_book" },
+    { nom: "Romans", min: 10, max: 40, icon: "book" },
+    { nom: "Bandes dessinées", min: 5, max: 30, icon: "collections_bookmark" },
+    { nom: "Livres universitaires", min: 20, max: 60, icon: "school" },
+    { nom: "Livres pour enfants", min: 5, max: 25, icon: "child_friendly" },
+    { nom: "Autre", min: 0, max: 100, icon: "auto_stories" }
+  ],
+
+"Vêtements": [
+  { nom: "T-shirts", min: 5, max: 20, icon: "checkroom" },
+  { nom: "Jeans", min: 10, max: 40, icon: "styler" },
+  { nom: "Pulls / Sweats", min: 8, max: 35, icon: "styler" },
+  { nom: "Vestes / Manteaux", min: 15, max: 50, icon: "styler" },
+  { nom: "Robes", min: 10, max: 40, icon: "styler" },
+  { nom: "Jupes", min: 8, max: 30, icon: "styler" },
+  { nom: "Pantalons", min: 10, max: 40, icon: "styler" },
+  { nom: "Costumes / Tailleurs", min: 20, max: 70, icon: "styler" },
+  { nom: "Chaussures", min: 10, max: 50, icon: "hiking" },
+  { nom: "Chapeaux / Bonnets", min: 5, max: 25, icon: "travel_explore" },     
+  { nom: "Accessoires vestimentaires", min: 5, max: 25, icon: "watch" },
+  { nom: "Autre", min: 0, max: 100, icon: "category" }
+],
+
+
+  "Électroniques": [
+    { nom: "Ordinateurs portables", min: 60, max: 100, icon: "laptop" },
+    { nom: "Écrans / Moniteurs", min: 40, max: 100, icon: "monitor" },
+    { nom: "Claviers", min: 10, max: 30, icon: "keyboard" },
+    { nom: "Souris", min: 5, max: 20, icon: "mouse" },
+    { nom: "Téléphones", min: 40, max: 100, icon: "smartphone" },
+    { nom: "Tablettes", min: 50, max: 100, icon: "tablet_android" },
+    { nom: "Calculatrices", min: 5, max: 20, icon: "calculate" },
+    { nom: "Imprimantes", min: 30, max: 80, icon: "print" },
+    { nom: "Casques / Écouteurs", min: 10, max: 40, icon: "headphones" },
+    { nom: "Accessoires USB / Chargeurs", min: 5, max: 20, icon: "cable" },
+    { nom: "Autre", min: 0, max: 100, icon: "devices_other" }
+  ],
+
+"Cuisine": [
+  { nom: "Micro-ondes", min: 30, max: 100, icon: "microwave" },
+  { nom: "Bouilloires", min: 10, max: 30, icon: "kettle" },
+  { nom: "Mixeurs / Blenders", min: 15, max: 50, icon: "blender" },
+  { nom: "Grille-pains", min: 10, max: 30, icon: "toast" },
+  { nom: "Vaisselle", min: 5, max: 25, icon: "dining" },
+  { nom: "Casseroles / Poêles", min: 5, max: 40, icon: "restaurant" },
+  { nom: "Ustensiles divers", min: 5, max: 25, icon: "kitchen" },
+  { nom: "Fours", min: 50, max: 150, icon: "kitchen" },
+  { nom: "Réfrigérateurs", min: 100, max: 300, icon: "ac_unit" },
+  { nom: "Cafetière", min: 20, max: 80, icon: "coffee" },
+  { nom: "Lave-vaisselle", min: 80, max: 200, icon: "local_laundry_service" },
+  { nom: "Autre", min: 0, max: 100, icon: "restaurant_menu" }
+],
+
+
+"Mobilité": [
+  { nom: "Trottinettes", min: 30, max: 60, icon: "electric_scooter" },
+  { nom: "Trottinettes électriques", min: 60, max: 100, icon: "scooter" },
+  { nom: "Vélos", min: 50, max: 100, icon: "directions_bike" },
+  { nom: "Skates / Longboards", min: 30, max: 80, icon: "sports_motorsports" },
+  { nom: "Gyropodes / Monoroues", min: 60, max: 100, icon: "travel_explore" },
+  { nom: "Casques de protection", min: 10, max: 30, icon: "sports_martial_arts" },
+  { nom: "Gants de vélo / moto", min: 5, max: 25, icon: "back_hand" },
+  { nom: "Antivols / cadenas", min: 5, max: 30, icon: "lock" },
+  { nom: "Pompes à air / outils", min: 5, max: 20, icon: "build" },
+  { nom: "Paniers / sacoches", min: 10, max: 35, icon: "shopping_bag" },
+  { nom: "Feux et phares", min: 5, max: 20, icon: "highlight" },
+  { nom: "Chargeurs / Batteries", min: 15, max: 50, icon: "battery_charging_full" },
+  { nom: "Autre", min: 0, max: 100, icon: "commute" }
+],
+
+
+"Décoration": [
+  { nom: "Lampes", min: 10, max: 40, icon: "light" },
+  { nom: "Cadres photo", min: 10, max: 50, icon: "photo_frame" },
+  { nom: "Tapis", min: 20, max: 80, icon: "grid_4x4" },
+  { nom: "Posters / Affiches", min: 5, max: 20, icon: "wallpaper" },
+  { nom: "Rideaux", min: 10, max: 50, icon: "curtains" },
+  { nom: "Plantes décoratives", min: 5, max: 25, icon: "local_florist" },
+  { nom: "Miroirs", min: 15, max: 60, icon: "flip_camera_android" },            // Ícone simboliza reflexo
+  { nom: "Horloges murales", min: 10, max: 40, icon: "schedule" },              // Relógio simples
+  { nom: "Bougies et senteurs", min: 5, max: 20, icon: "emoji_objects" },       // Lembra vela ou ideia
+  { nom: "Vases", min: 10, max: 40, icon: "bakery_dining" },                    // Ícone estilizado com semelhança
+  { nom: "Guirlandes lumineuses", min: 10, max: 30, icon: "celebration" },      // Decoração festiva
+  { nom: "Autre", min: 0, max: 100, icon: "home" }
+],
+
+  "Accessoires": [
+    { nom: "Sacs à dos", min: 10, max: 50, icon: "backpack" },
+    { nom: "Montres", min: 15, max: 40, icon: "watch" },
+    { nom: "Portefeuilles", min: 5, max: 20, icon: "account_balance_wallet" },
+    { nom: "Lunettes de soleil", min: 10, max: 30, icon: "visibility" },
+    { nom: "Bijoux fantaisie", min: 5, max: 25, icon: "diamond" },
+    { nom: "Coques de téléphone", min: 5, max: 15, icon: "phone_iphone" },
+    { nom: "Autre", min: 0, max: 100, icon: "category" }
+  ],
+
+"Loisirs créatifs": [
+  { nom: "Matériel de dessin", min: 5, max: 30, icon: "brush" },
+  { nom: "Peinture / Acrylique", min: 5, max: 30, icon: "palette" },
+  { nom: "Papiers / carnets", min: 5, max: 20, icon: "book" },
+  { nom: "Équipements DIY", min: 10, max: 40, icon: "build" },            
+  { nom: "Perles et bijoux faits main", min: 5, max: 30, icon: "diamond" },          
+  { nom: "Matériel de scrapbooking", min: 5, max: 25, icon: "content_paste" },      
+  { nom: "Pinceaux et outils", min: 5, max: 20, icon: "format_paint" },              
+  { nom: "Argile / Pâte à modeler", min: 5, max: 30, icon: "toys" },                 
+  { nom: "Machines à coudre", min: 30, max: 100, icon: "precision_manufacturing" },  
+  { nom: "Autre", min: 0, max: 100, icon: "category" }
+],
+
+
+"Bureau": [
+  { nom: "Chaises de bureau", min: 20, max: 80, icon: "chair" },
+  { nom: "Bureaux / Tables", min: 30, max: 100, icon: "table_bar" },
+  { nom: "Organiseurs", min: 5, max: 25, icon: "folder" },
+  { nom: "Lampes de bureau", min: 10, max: 30, icon: "lightbulb" },
+  { nom: "Étagères / Bibliothèques", min: 20, max: 60, icon: "shelves" },               
+  { nom: "Tapis de souris", min: 3, max: 10, icon: "mouse" },                            
+  { nom: "Supports pour ordinateur", min: 10, max: 25, icon: "laptop_chromebook" },      
+  { nom: "Accessoires de câblage", min: 5, max: 20, icon: "cable" },                     
+  { nom: "Boîtes de rangement", min: 5, max: 20, icon: "inventory_2" },                  
+  { nom: "Tiroirs / Caissons", min: 15, max: 40, icon: "view_agenda" },                  
+  { nom: "Porte-documents", min: 10, max: 30, icon: "work" },                            
+  { nom: "Tableaux blancs", min: 10, max: 40, icon: "draw" },                            
+  { nom: "Autre", min: 0, max: 100, icon: "workspaces" }
+],
+
+"Instruments de musique": [
+  { nom: "Guitares", min: 40, max: 100, icon: "music_note" },
+  { nom: "Claviers", min: 30, max: 100, icon: "piano" },
+  { nom: "Instruments à vent", min: 20, max: 80, icon: "library_music" },
+  { nom: "Accessoires (métronomes, étuis)", min: 5, max: 30, icon: "tune" },
+  { nom: "Batterie / Percussions", min: 25, max: 90, icon: "audiotrack" },
+  { nom: "Cordes (violons, violoncelles)", min: 30, max: 100, icon: "library_music" },
+  { nom: "Cuivres (trompettes, trombones)", min: 25, max: 85, icon: "volume_up" },
+  { nom: "Autre", min: 0, max: 100, icon: "music_video" }
+],
+
+
+  "Diversos": [
+    { nom: "Jeux de société", min: 10, max: 40, icon: "sports_esports" },
+    { nom: "Jouets", min: 5, max: 30, icon: "toys" },
+    { nom: "Articles faits main", min: 5, max: 60, icon: "handyman" },
+    { nom: "Objets divers", min: 1, max: 100, icon: "extension" },
+    { nom: "Petits électroménagers", min: 20, max: 100, icon: "microwave" },
+    { nom: "Autre", min: 0, max: 100, icon: "more_horiz" }
+  ]
+};
+
+
+  let sousCategorieActive = null;
+  let lignePrecedente = null;
+
+  function afficherTableCategorie() {
+    const cat = document.getElementById("categorieSelect").value;
+    const container = document.getElementById("tableContainer");
+    sousCategorieActive = null;
+    document.getElementById("erreurPrix").style.display = "none";
+    document.getElementById("prixInput").value = "";
+
+    if (!cat || !data[cat]) {
+      container.innerHTML = "";
+      container.style.display = "none";
+      return;
+    }
+
+    let html = `<table class="table table-hover table-bordered table-sm">
+  <thead class="table-light">
+    <tr><th>Type</th><th>Min</th><th>Max</th></tr>
+  </thead><tbody>`;
+
+data[cat].forEach((item, index) => {
+  html += `<tr data-index="${index}" data-cat="${cat}" style="cursor:pointer;">
+    <td>
+      <span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 6px;">
+        ${item.icon}
+      </span>
+      ${item.nom}
+    </td>
+    <td>${item.min}</td>
+    <td>${item.max}</td>
+  </tr>`;
+});
+
+
+    html += "</tbody></table>";
+    container.innerHTML = html;
+    container.style.display = "block";
+
+    // Adiciona listener a cada linha
+    container.querySelectorAll("tbody tr").forEach(row => {
+      row.addEventListener("click", () => {
+        // destacar linha
+        if (lignePrecedente) lignePrecedente.classList.remove("selected-row");
+        row.classList.add("selected-row");
+        lignePrecedente = row;
+
+        // definir subcategoria ativa
+        const idx = row.getAttribute("data-index");
+        const catName = row.getAttribute("data-cat");
+        sousCategorieActive = data[catName][idx];
+        verifierPrix();
+      });
+    });
+  }
+
+  function verifierPrix() {
+    const prix = parseInt(document.getElementById("prixInput").value);
+    const erreur = document.getElementById("erreurPrix");
+
+    if (sousCategorieActive && !isNaN(prix)) {
+      if (prix < sousCategorieActive.min || prix > sousCategorieActive.max) {
+        erreur.style.display = "block";
+      } else {
+        erreur.style.display = "none";
+      }
+    } else {
+      erreur.style.display = "none";
+    }
+  }
+</script>
+
+<div class="mb-3">
+  <label class="form-label">Dans quel état est votre objet ?</label>
+  <div class="etat-options">
+    <input type="radio" name="etat" id="etat1" value="Comme neuf" checked>
+    <label for="etat1">Comme neuf</label>
+
+    <input type="radio" name="etat" id="etat2" value="Bon état">
+    <label for="etat2">Bon état</label>
+
+    <input type="radio" name="etat" id="etat3" value="Porté">
+    <label for="etat3">Porté</label>
+
+    <input type="radio" name="etat" id="etat4" value="Cassé">
+    <label for="etat4">Cassé</label>
+  </div>
+</div>
+
+<style>
+.etat-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Esconde o input real */
+.etat-options input[type="radio"] {
+  display: none;
+}
+
+/* Estilo padrão para todos os labels */
+.etat-options label {
+  padding: 8px 16px;
+  border: 2px solid #ccc;      /* borda cinza */
+  border-radius: 20px;
+  background-color: #f8f9fa;   /* fundo claro */
+  color: #333 !important;                  /* texto escuro */
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Apenas o label logo após o input marcado recebe o estilo ativo */
+.etat-options input[type="radio"]:checked + label {
+  background-color: #ff681d;   /* fundo laranja */
+  border-color: #ff681d;       /* borda laranja */
+  color: #fff !important;                 /* texto branco */
+}
+
+
+</style>
+
+
+
+<div class="mb-4">
+  <label class="form-label">Ajoutez vos photos</label>
+  <div class="photo-upload" id="photoUploadContainer">
+    <!-- Os slots são gerados via JS -->
+  </div>
+</div>
+
+<style>
+.photo-upload {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.photo-box {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* Faz o quadrado */
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.photo-box > .content {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #888;
+}
+
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+input[type="file"].hidden-file {
+  display: none;
+}
+
+</style>
+
+<script>
+  const container = document.getElementById('photoUploadContainer');
+
+  for (let i = 0; i < 8; i++) {
+    const box = document.createElement('div');
+    box.className = 'photo-box';
+
+    // Cria o conteúdo central (com +)
+    const content = document.createElement('div');
+    content.className = 'content';
+    content.innerHTML = '+'; // ícone de adição
+
+    // Input oculto
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.className = 'hidden-file';
+
+    // Quando o usuário selecionar uma imagem
+    input.addEventListener('change', function () {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          content.innerHTML = ''; // limpa o +
+          content.appendChild(img); // insere a imagem
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    });
+
+    // Quando clicar, abre o input
+    box.addEventListener('click', () => input.click());
+
+    box.appendChild(content);
+    box.appendChild(input);
+    container.appendChild(box);
+  }
+</script>
+
+
+
+
+<div class="mb-3">
+  <label class="form-label">Disponibilités</label>
+  <p class="text-muted">
+    Quelle est ta disponibilité possible pour échanger ou remettre le produit ?
+  </p>
+  <select class="form-select">
+    <option selected>Disponibilités</option>
+    <option>En semaine</option>
+    <option>Week-end</option>
+    <option>Matin</option>
+    <option>Après-midi</option>
+    <option>Soir</option>
+  </select>
+</div>
+
+
+<div class="mb-4">
+  <label class="form-label">Lieu de remise principal</label>
+  <div class="row g-3">
+    <!-- Option: Adresse personnelle -->
+    <div class="col-md-6">
+      <div class="card p-3 choix-lieu" id="cardAdresse" style="border: none;">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="lieuPrincipal" id="lieuAdresse" checked>
+          <label class="form-check-label fw-semibold" for="lieuAdresse">
+            <span class="material-symbols-outlined align-middle">home_pin</span> Entrer une adresse
+          </label>
+        </div>
+        <input type="text" class="form-control mt-2" id="adressePrincipale" placeholder="Ex : 13 Place du Trocadéro, Paris">
+      </div>
+    </div>
+
+    <!-- Option: Université -->
+    <div class="col-md-6">
+      <div class="card p-3 choix-lieu" id="cardUniversite" style="border: none;">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="lieuPrincipal" id="lieuUniversite">
+          <label class="form-check-label fw-semibold" for="lieuUniversite">
+            <span class="material-symbols-outlined align-middle">school</span> Université
+          </label>
+        </div>
+        <!-- Sempre visível: campo de seleção de universidade -->
+        <div class="mt-2">
+          <select id="universiteSelect" class="form-select">
+            <option value="Paris Cité">Université Paris Cité</option>
+            <option value="Sorbonne">Sorbonne Université</option>
+            <option value="PSL">Université PSL</option>
+            <option value="UTC">Université de Technologie de Compiègne</option>
+            <!-- adicione quantas quiser -->
+          </select>
+          <small class="form-text text-muted">Si tu veux, clique ici pour changer d’université</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- CSS do Select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<!-- JS do jQuery e Select2 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#universiteSelect').select2({
+      placeholder: "Choisissez une université",
+      width: '100%'
+    });
+  });
+</script>
+
+
+
+  <!-- Autres lieux (max 2) -->
+  <label class="form-label mt-4">Autres lieux possibles pour la remise</label>
+  <small class="text-muted d-block mt-2">
+    Si possible, ajoute aussi d'autres lieux proches pour faciliter l'échange.
+  </small>
+  
+  <div id="autresAdressesContainer"></div>
+  <button type="button" class="btn btn-outline-secondary w-100 mt-2" id="btnAjouterAdresse">
+    + Ajouter un autre lieu
+  </button>
+</div>
+
+<style>
+  .choix-lieu {
+    transition: border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .choix-lieu:hover {
+    border-color: #ff681d;
+  }
+  .choix-lieu .form-check-input:checked ~ .form-check-label,
+  .choix-lieu .form-check-input:checked ~ label {
+    color: #ff681d !important;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const cards = document.querySelectorAll('.choix-lieu');
+    const adressePrincipale = document.getElementById('adressePrincipale');
+    const lieuAdresse = document.getElementById('lieuAdresse');
+    const lieuUniversite = document.getElementById('lieuUniversite');
+    const universiteSelect = document.getElementById('universiteSelect');
+    const cardAdresse = document.getElementById('cardAdresse');
+    const cardUniversite = document.getElementById('cardUniversite');
+    const btnAjouter = document.getElementById('btnAjouterAdresse');
+    const containerAutres = document.getElementById('autresAdressesContainer');
+    let countAutres = 0;
+
+    // clique na card para selecionar
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const radio = card.querySelector('input[type="radio"]');
+        radio.checked = true;
+        toggleLieu();
+      });
+    });
+
+    function toggleLieu() {
+      if (lieuAdresse.checked) {
+        adressePrincipale.disabled = false;
+        universiteSelect.disabled = true;
+        cardAdresse.classList.add('border-success');
+        cardUniversite.classList.remove('border-success');
+      } else {
+        adressePrincipale.disabled = true;
+        universiteSelect.disabled = false;
+        cardUniversite.classList.add('border-success');
+        cardAdresse.classList.remove('border-success');
+      }
+    }
+
+    lieuAdresse.addEventListener('change', toggleLieu);
+    lieuUniversite.addEventListener('change', toggleLieu);
+    toggleLieu();
+
+    // Adicionar apenas até 2 outros endereços
+    btnAjouter.addEventListener('click', () => {
+      if (countAutres >= 2) return;
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'form-control mb-2 autreAdresse';
+      input.placeholder = 'Autre lieu de remise (adresse complète)';
+      containerAutres.appendChild(input);
+      countAutres++;
+      if (countAutres === 2) {
+        btnAjouter.disabled = true;
+      }
+    });
+  });
+</script>
+
+
+
+
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-orange w-100">Créer annonce</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="footer">
+    &copy; 2025 Trooky. Tous droits réservés.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trooky - Objets</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
+
+
+  <style>
+    html { height: 100%; overflow-y: scroll; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      padding-top: 90px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 12px 20px;
+      z-index: 1000;
+    }
+    .btn-orange {
+      background-color: #ff681d;
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      border: none;
+      padding: 6px 18px;
+    }
+    .icon-btn {
+      background: none;
+      border: none;
+      color: #ff681d;
+      font-size: 20px;
+    }
+    .coin-display {
+      border: 0.5px solid #ff681d;
+      border-radius: 30px;
+      padding: 6px 12px;
+      font-weight: 600;
+      color: #000;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dropdown-menu {
+      min-width: 200px;
+      font-size: 0.95rem;
+      padding: 10px 0;
+    }
+    .dropdown-menu .dropdown-item {
+      padding: 10px 20px;
+      transition: background 0.2s;
+    }
+    .dropdown-menu .dropdown-item:hover {
+      background-color: #f8f9fa;
+    }
+    .product-card {
+      background-color: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .product-card:hover { transform: translateY(-4px); }
+    .product-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    .img-error {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 180px;
+      background-color: #f1f1f1;
+      color: #999;
+      font-size: 0.9rem;
+    }
+    .product-body {
+      padding: 16px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .product-category {
+      font-size: 0.75rem;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .product-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #333;
+    }
+    .product-location {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      
+      color: #ff681d;
+      border: 1px solid #ff681d;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 4px 8px;
+      width: fit-content;
+      margin-top: auto;
+    }
+    .product-price img {
+      height: 25px;
+      width: 25px;
+    }
+    .no-results {
+      text-align: center;
+      padding: 60px 0;
+      font-size: 1.2rem;
+      color: #999;
+    }
+    .no-results i {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 10px;
+      color: #bbb;
+    }
+    .filter-wrapper {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 30px 0;
+      font-size: 0.95rem;
+      margin-top: auto;
+    }
+    .material-symbols-outlined {
+      vertical-align: middle;
+      font-size: 20px;
+    }
+
+    .coin-badge {
+      color: #ff681d;
+      border-radius: 30%;
+      font-size: 18px;
+    }
+
+    .icon-btn-expand {
+  background: none;
+  border: none;
+  color: #ff681d;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 20px;
+  padding: 6px 10px;
+  transition: background-color 0.8s ease, padding-right 0.8s ease;
+  overflow: hidden;
+}
+
+
+
+.icon-btn-expand .btn-label {
+  white-space: nowrap;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: max-width 0.5s ease, opacity 0.5s ease;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.icon-btn-expand:hover .btn-label {
+  opacity: 1;
+  max-width: 200px;
+}
+
+  </style>
+</head>
+<body>
+  
+
+<!-- NAVBAR -->
+<nav class="navbar fixed-top d-flex justify-content-between align-items-center">
+  <div>
+    <a href="index.html">
+      <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+    </a>
+  </div>
+  <div class="d-flex align-items-center gap-3">
+    <button class="btn btn-orange">Publier</button>
+
+    
+    <button class="icon-btn-expand" title="Mes réservés" onclick="window.location.href='reserves.html'">
+      <span class="material-symbols-outlined">bookmark</span>
+      <span class="btn-label">Mes réservés</span>
+    </button>
+    
+    <button class="icon-btn-expand" title="Mes publications" onclick="window.location.href='pub.html'">
+      <span class="material-symbols-outlined">outbox</span>
+      <span class="btn-label">Mes publications</span>
+    </button>
+    
+    
+    <button class="icon-btn-expand" title="Messages" onclick="window.location.href='Messages.html'">
+      <span class="material-symbols-outlined">mail</span>
+      <span class="btn-label">Messages</span>
+    </button>
+
+        
+    <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='store.html'">
+      <span class="material-symbols-outlined">store</span>
+      <span class="btn-label">Boutique</span>
+    </button>
+
+
+    <button class="icon-btn-expand" title="help" onclick="window.location.href='quest.html'">
+      <span class="material-symbols-outlined">help</span>
+    </button>
+    
+    
+    
+
+    <a href="coins.html" style="text-decoration: none;">
+      <div class="coin-display" title="Portefeuille">
+      
+        <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
+        <span class="coin-badge">10 TRC</span>
+      </div>
+    </a>
+    
+    <div class="dropdown">
+      <button class="btn p-0 border-0 bg-transparent d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profil" class="rounded-circle" width="36" height="36" onclick="window.location.href='profil.html'" />
+        <span class="material-symbols-outlined">expand_more</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
+        <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
+        <li><a class="dropdown-item" href="messages.html">Messages</a></li>
+        <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
+        <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- FILTROS -->
+<div class="container mt-4 filter-wrapper">
+  <div class="row g-3 align-items-center">
+    <div class="col-md">
+      <select class="form-select" id="locationSelect">
+        <option value="">Choisir une ville</option>
+        <option value="user-location">Utiliser ma position actuelle</option>
+        <option value="Lisbonne">Lisbonne</option>
+        <option value="Paris">Paris</option>
+        <option value="Porto">Porto</option>
+        <option value="Metz">Metz</option>
+      </select>
+    </div>
+    <div class="col-md">
+      <select class="form-select" id="universitySelect" onchange="renderProducts()">
+        <option value="">Toutes les universités</option>
+        <option value="ISCTE">ISCTE</option>
+        <option value="Sorbonne">Sorbonne</option>
+        <option value="Université de Porto">Université de Porto</option>
+        <option value="IUT Metz">IUT Metz</option>
+      </select>
+    </div>
+    <div class="col-md">
+      <select class="form-select" id="categorySelect" onchange="renderProducts()">
+        <option value="">Toutes les catégories</option>
+        <option value="Vêtements">Vêtements</option>
+        <option value="Décoration">Décoration</option>
+        <option value="Accessoires">Accessoires</option>
+        <option value="Technologie">Technologie</option>
+        <option value="Livres">Livres</option>
+        <option value="Cuisine">Cuisine</option>
+        <option value="Sports">Sports</option>
+      </select>
+    </div>
+    <div class="col-md">
+      <input type="text" class="form-control" placeholder="Rechercher un objet..." id="searchInput" oninput="renderProducts()" />
+    </div>
+  </div>
+</div>
+
+<!-- LISTE DES PRODUITS -->
+<div class="container mt-4 mb-5"  style="cursor: pointer;">
+  <div class="row g-4" id="productList" onclick="window.location.href='detail.html'"></div>
+  <div class="text-center mt-5">
+    <button class="btn btn-orange" onclick="loadMore()">Voir plus d’objets</button>
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>&copy; 2025 Trooky — Tous droits réservés. Fait avec ♥ pour faciliter les échanges entre étudiants.</footer>
+
+<!-- SCRIPT -->
+<script>
+  const products = Array.from({ length: 30 }, (_, i) => ({
+    image: "https://source.unsplash.com/400x300/?object," + i,
+    category: ["Mobilité", "Décoration", "Vêtements", "Accessoires", "Technologie", "Livres", "Cuisine", "Sports"][i % 8],
+    title: "Objet #" + (i + 1),
+    price: (i + 3),
+    reserved: false,
+    location: ["Lisbonne", "Paris", "Porto", "Metz"][i % 4],
+    university: ["ISCTE", "Sorbonne", "Université de Porto", "IUT Metz"][i % 4]
+  }));
+
+  let visibleCount = 8;
+
+  function renderProducts() {
+    const container = document.getElementById("productList");
+    container.innerHTML = "";
+
+    const search = document.getElementById("searchInput").value.toLowerCase();
+    const location = document.getElementById("locationSelect").value;
+    const category = document.getElementById("categorySelect").value;
+    const university = document.getElementById("universitySelect").value;
+
+    const filtered = products.filter(p =>
+      !p.reserved &&
+      (!location || p.location === location) &&
+      (!category || p.category === category) &&
+      (!university || p.university === university) &&
+      (!search || p.title.toLowerCase().includes(search))
+    );
+
+    if (filtered.length === 0) {
+      container.innerHTML = `<div class="no-results"><i class="material-symbols-outlined">search_off</i>Objet non trouvé.</div>`;
+      return;
+    }
+
+    filtered.slice(0, visibleCount).forEach(p => {
+      const div = document.createElement("div");
+      div.className = "col-md-3 col-sm-6";
+      div.innerHTML = `
+        <div class="product-card">
+          <img src="${p.image}" class="product-img" onerror="this.outerHTML='<div class=\\'img-error\\'>Fichier non disponible</div>'" />
+          <div class="product-body">
+            <div class="product-category">${p.category}</div>
+            <div class="product-title">${p.title}</div>
+            <div class="product-location"><span class="material-symbols-outlined">location_on</span> ${p.location}</div>
+            <div class="product-price">
+              <img src="trookycoin-icon.png" alt="TRC">
+              ${p.price} TRC
+            </div>
+          </div>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  function loadMore() {
+    visibleCount += 8;
+    renderProducts();
+  }
+
+  document.getElementById("locationSelect").addEventListener("change", function () {
+    const select = this;
+    if (select.value === "user-location") {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            let detectedCity = "";
+
+            if (lat >= 38 && lat <= 39 && lng >= -10 && lng <= -8) detectedCity = "Lisbonne";
+            else if (lat >= 48 && lat <= 49 && lng >= 1 && lng <= 3) detectedCity = "Paris";
+            else if (lat >= 41 && lat <= 42 && lng >= -9 && lng <= -7) detectedCity = "Porto";
+            else if (lat >= 49 && lat <= 50 && lng >= 5 && lng <= 7) detectedCity = "Metz";
+
+            if (detectedCity) {
+              select.value = detectedCity;
+              renderProducts();
+            } else {
+              alert("Ville non reconnue à partir de votre position actuelle.");
+              select.value = "";
+              renderProducts();
+            }
+          },
+          function () {
+            alert("Impossible de récupérer la position.");
+            select.value = "";
+            renderProducts();
+          }
+        );
+      } else {
+        alert("La géolocalisation n’est pas supportée par ce navigateur.");
+        select.value = "";
+        renderProducts();
+      }
+    } else {
+      renderProducts();
+    }
+  });
+
+  window.onload = () => {
+    renderProducts();
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

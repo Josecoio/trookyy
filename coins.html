@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portefeuille Trooky</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
+  
+  <style>
+    :root {
+      --primary: #FF681D;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #F8FAFD;
+      padding-top: 90px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 12px 20px;
+      z-index: 1000;
+    }
+
+    .btn-orange {
+      background-color: var(--primary);
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      padding: 6px 18px;
+      border: none;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    .coin-display {
+      border: 0.5px solid var(--primary);
+      border-radius: 30px;
+      padding: 6px 12px;
+      font-weight: 600;
+      color: #000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .coin-badge {
+      color: #ff681d;
+      border-radius: 30%;
+      font-size: 18px;
+    }
+
+    footer {
+      background-color: #fff;
+      text-align: center;
+      color: #999;
+      border-top: 1px solid #eee;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+
+    .wallet-card {
+      background: linear-gradient(135deg, #fff 0%, #fff8f5 100%);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 104, 29, 0.15);
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .balance-display {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .balance-display img {
+      height: 30px;
+    }
+
+    .wallet-action-btn {
+      background-color: rgba(255, 104, 29, 0.1);
+      border-radius: 16px;
+      padding: 1rem;
+      width: 100%;
+      color: var(--primary);
+      font-weight: 600;
+      border: none;
+    }
+
+    .filter-pill {
+      border: 1px solid var(--primary);
+      border-radius: 32px;
+      padding: 0.5rem 1.25rem;
+      cursor: pointer;
+      color: var(--primary);
+      background-color: white;
+      transition: 0.2s;
+    }
+
+    .filter-pill.active {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .transaction-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 16px;
+      padding: 1.25rem;
+      transition: 0.2s;
+    }
+
+    .transaction-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .icon-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-btn-expand {
+      background: none;
+      border: none;
+      color: #ff681d;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 20px;
+      padding: 6px 10px;
+      transition: background-color 0.8s ease, padding-right 0.8s ease;
+      overflow: hidden;
+    }
+
+
+
+    .icon-btn-expand .btn-label {
+      white-space: nowrap;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: max-width 0.5s ease, opacity 0.5s ease;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .icon-btn-expand:hover .btn-label {
+      opacity: 1;
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar fixed-top d-flex justify-content-between align-items-center">
+  <div>
+    <a href="index.html">
+      <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+    </a>
+  </div>
+  <div class="d-flex align-items-center gap-3">
+    <button class="btn btn-orange">Publier</button>
+
+    
+    <button class="icon-btn-expand" title="Mes réservés" onclick="window.location.href='reserves.html'">
+      <span class="material-symbols-outlined">bookmark</span>
+      <span class="btn-label">Mes réservés</span>
+    </button>
+    
+    <button class="icon-btn-expand" title="Mes publications" onclick="window.location.href='pub.html'">
+      <span class="material-symbols-outlined">outbox</span>
+      <span class="btn-label">Mes publications</span>
+    </button>
+    
+    
+    <button class="icon-btn-expand" title="Messages">
+      <span class="material-symbols-outlined">mail</span>
+      <span class="btn-label">Messages</span>
+    </button>
+
+    <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='quest.html'">
+      <span class="material-symbols-outlined">help</span>
+    </button>
+    
+    
+    
+
+    <a href="coins.html" style="text-decoration: none;">
+      <div class="coin-display" title="Portefeuille">
+      
+        <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
+        <span class="coin-badge">10 TRC</span>
+      </div>
+    </a>
+    
+    <div class="dropdown">
+      <button class="btn p-0 border-0 bg-transparent d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profil" class="rounded-circle" width="36" height="36" onclick="window.location.href='profil.html'" />
+        <span class="material-symbols-outlined">expand_more</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
+        <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
+        <li><a class="dropdown-item" href="messages.html">Messages</a></li>
+        <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
+        <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="container my-4 flex-grow-1">
+  <div class="wallet-card text-center mb-4">
+    <div class="text-muted mb-2">Solde actuel</div>
+    <div class="balance-display">
+      <img src="trookycoin-icon.png" alt="TRC"> 10 TRC
+    </div>
+    <button class="wallet-action-btn mt-3" data-bs-toggle="modal" data-bs-target="#buyModal">
+      <span class="material-symbols-outlined">add</span> Acheter des Coins
+    </button>
+  </div>
+
+  <div class="d-flex gap-2 flex-wrap align-items-center mb-4">
+    <div class="filter-pill active" onclick="filterTransactions('all')">Toutes</div>
+    <div class="filter-pill" onclick="filterTransactions('entrée')">Entrées</div>
+    <div class="filter-pill" onclick="filterTransactions('sortie')">Sorties</div>
+    <input type="date" id="filterDate" class="form-control" style="max-width: 200px;" onchange="filterTransactions()">
+    <button class="btn btn-outline-danger" onclick="resetFilters()" title="Effacer filtre">
+      <span class="material-symbols-outlined">filter_alt_off</span>
+    </button>
+  </div>
+
+  <div id="transactionList" class="d-grid gap-3">
+    <div class="transaction-card" data-type="entrée" data-date="2025-04-30">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon-circle bg-success bg-opacity-10">
+            <span class="material-symbols-outlined text-success">call_received</span>
+          </div>
+          <div>
+            <a href="#" class="fw-bold text-dark text-decoration-none">Achat de Coins</a><br>
+            <small class="text-muted">30 avr. 2025</small>
+          </div>
+        </div>
+        <div class="text-success fw-bold">+10 TRC</div>
+      </div>
+    </div>
+
+    <div class="transaction-card" data-type="sortie" data-date="2025-05-01">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+          <div class="icon-circle bg-danger bg-opacity-10">
+            <span class="material-symbols-outlined text-danger">call_made</span>
+          </div>
+          <div>
+            <a href="#" class="fw-bold text-dark text-decoration-none">Réduction café</a><br>
+            <small class="text-muted">1 mai 2025</small>
+          </div>
+        </div>
+        <div class="text-danger fw-bold">-3 TRC</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- MODAL ACHAT -->
+<div class="modal fade" id="buyModal" tabindex="-1" aria-labelledby="buyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="buyModalLabel">Acheter des Trooky Coins</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <label for="amountCoins" class="form-label">Choisir la quantité:</label>
+        <select id="amountCoins" class="form-select" onchange="updatePrice()">
+          <option value="10">10 TRC</option>
+          <option value="20">20 TRC</option>
+          <option value="50">50 TRC</option>
+          <option value="100">100 TRC</option>
+        </select>
+        <p class="mt-3">Prix: <strong id="priceDisplay">1 €</strong></p>
+        <hr>
+        <p>Payez avec:</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" height="30">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary">Payer maintenant</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 Trooky. Tous droits réservés.
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+  function filterTransactions(type = 'all') {
+    const date = document.getElementById('filterDate').value;
+    const cards = document.querySelectorAll('.transaction-card');
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    document.querySelector(`.filter-pill[onclick*="${type}"]`)?.classList.add('active');
+
+    cards.forEach(card => {
+      const tType = card.dataset.type;
+      const tDate = card.dataset.date;
+      const matchType = type === 'all' || tType === type;
+      const matchDate = !date || tDate === date;
+      card.style.display = (matchType && matchDate) ? 'block' : 'none';
+    });
+  }
+
+  function resetFilters() {
+    document.getElementById('filterDate').value = '';
+    filterTransactions('all');
+  }
+
+  function updatePrice() {
+    const amount = document.getElementById('amountCoins').value;
+    const euros = amount / 10;
+    document.getElementById('priceDisplay').textContent = euros + ' €';
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

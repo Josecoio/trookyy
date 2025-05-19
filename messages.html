@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Messages - Trooky</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
+  
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      padding-top: 90px;
+    }
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 12px 20px;
+      z-index: 1000;
+    }
+    .btn-orange {
+      background-color: #ff681d;
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border: none;
+    }
+    .icon-btn {
+      background: none;
+      border: none;
+      color: #ff681d;
+      font-size: 20px;
+    }
+    .coin-display {
+      border: 0.5px solid #ff681d;
+      border-radius: 30px;
+      padding: 6px 12px;
+      font-weight: 600;
+      color: #000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+
+    footer {
+
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+  font-size: 1rem;
+  z-index: 100;
+
+  border-top: 1px solid #ddd;
+}
+
+    .coin-badge {
+      color: #ff681d;
+      border-radius: 30%;
+      font-size: 18px;
+    }
+    .icon-btn-expand {
+      background: none;
+      border: none;
+      color: #ff681d;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 20px;
+      padding: 6px 10px;
+      transition: background-color 0.8s ease, padding-right 0.8s ease;
+      overflow: hidden;
+    }
+
+    .icon-btn-expand .btn-label {
+      white-space: nowrap;
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      transition: max-width 0.5s ease, opacity 0.5s ease;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .icon-btn-expand:hover .btn-label {
+      opacity: 1;
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar fixed-top d-flex justify-content-between align-items-center">
+    <div>
+      <a href="vendas.html">
+        <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+      </a>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-orange" onclick="window.location.href='creer.html' ">Publier</button>
+  
+      
+      <button class="icon-btn-expand" title="Mes réservés" onclick="window.location.href='reserves.html'">
+        <span class="material-symbols-outlined">bookmark</span>
+        <span class="btn-label">Mes réservés</span>
+      </button>
+      
+      <button class="icon-btn-expand" title="Mes publications" onclick="window.location.href='pub.html'">
+        <span class="material-symbols-outlined">outbox</span>
+        <span class="btn-label">Mes publications</span>
+      </button>
+      
+      <button class="icon-btn-expand" title="Messages" onclick="window.location.href='messages.html'">
+        <span class="material-symbols-outlined">mail</span>
+        <span style="font-size: 14px;
+      font-weight: 600;">Messages</span>
+      </button>
+
+      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='store.html'">
+        <span class="material-symbols-outlined">store</span>
+        <span class="btn-label">Boutique</span>
+      </button>
+      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='quest.html'">
+        <span class="material-symbols-outlined">help</span>
+      </button>
+      
+  
+      <a href="coins.html" style="text-decoration: none;">
+        <div class="coin-display" title="Portefeuille">
+        
+          <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
+          <span class="coin-badge">10 TRC</span>
+        </div>
+      </a>
+      <div class="dropdown">
+        <button class="btn p-0 border-0 bg-transparent d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profil" class="rounded-circle" width="36" height="36" onclick="window.location.href='profil.html'" />
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
+          <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
+          <li><a class="dropdown-item" href="messages.html">Messages</a></li>
+          <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
+          <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENU -->
+
+
+ 
+
+  <div class="container-fluid mt-2">
+    <div class="row" style="height: 80vh;">
+  
+      <!-- Sidebar -->
+      <div class="col-md-4 border-end overflow-auto bg-white">
+        <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+          <h5 class="m-0">Mes Messages</h5>
+          <i class="bi bi-pencil-square text-orange" title="Nouveau message" style="cursor:pointer;"></i>
+        </div>
+  
+        <div class="list-group list-group-flush" id="conversation-list">
+          <!-- Équipe Trooky -->
+          <a href="#" class="list-group-item list-group-item-action d-flex gap-3 align-items-center active" data-user="trooky">
+            <img src="img/Trooky_logo1.png" class="rounded-circle" width="40" height="40" />
+            <div class="flex-grow-1">
+              <div class="fw-semibold d-flex justify-content-between">
+                <span>Équipe Trooky</span>
+                <small class="text-50">10:15</small>
+              </div>
+              <small class="text-50 d-block">Merci pour ton message !</small>
+            </div>
+            <span class="badge bg-orange rounded-pill ms-auto">1</span>
+          </a>
+  
+          <!-- Mathieu -->
+          <a href="#" class="list-group-item list-group-item-action d-flex gap-3 align-items-center" data-user="mathieu">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" class="rounded-circle" width="40" height="40" />
+            <div class="flex-grow-1">
+              <div class="fw-semibold d-flex justify-content-between">
+                <span>Mathieu</span>
+                <small class="text-muted">Aujourd’hui</small>
+              </div>
+              <small class="text-muted d-block">J’ai réservé ta calculatrice !</small>
+            </div>
+            <span class="badge bg-orange rounded-pill ms-auto">1</span>
+          </a>
+        </div>
+      </div>
+  
+      <style>
+        .list-group-item.active {
+  background-color: #e0e0e0 !important; /* Cinza claro */
+  color: #000 !important;
+  border: none;
+}
+
+.list-group-item.active .text-white,
+.list-group-item.active .text-white-50 {
+  color: #333 !important; /* Texto escuro para boa leitura */
+}
+
+      </style>
+      <!-- Chat principal -->
+      <div class="col-md-8 d-flex flex-column bg-light">
+        <!-- En-tête -->
+        <div class="border-bottom p-3 d-flex align-items-center gap-3 bg-white" id="chat-header">
+          <img src="img/Trooky_logo1.png" class="rounded-circle" width="40" height="40" />
+          <div>
+            <h6 class="mb-0" id="chat-name">Équipe Trooky</h6>
+            <small class="text-muted">En ligne</small>
+          </div>
+        </div>
+  
+        <!-- Zone de messages avec scroll propre -->
+        <div class="flex-grow-1 p-3 overflow-auto" id="chat-messages" style="background-color: #f1f3f5; height: 0; flex: 1 1 auto;">
+          <div class="d-flex flex-column gap-3" id="message-list">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
+  
+        <!-- Zone de saisie -->
+        <div class="p-3 border-top bg-white">
+          <form id="chat-form" class="d-flex gap-2">
+            <input type="text" id="chat-input" class="form-control" placeholder="Écris un message..." autocomplete="off" />
+            <button type="submit" class="btn btn-orange">
+              <i class="bi bi-send-fill"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("chat-input");
+    const messageList = document.getElementById("message-list");
+    const chatBox = document.getElementById("chat-messages");
+    const chatName = document.getElementById("chat-name");
+    const chatHeader = document.getElementById("chat-header");
+    const conversationList = document.getElementById("conversation-list");
+  
+    const conversations = {
+      trooky: [
+        {
+          from: "trooky",
+          text: "<strong>Bienvenue chez Trooky !</strong><br>N'hésitez pas à nous écrire si vous avez des questions ou des suggestions.<br>❤️ L’équipe Trooky",
+          time: "10:01"
+        },
+        {
+          from: "me",
+          text: "Merci, ravi d'être ici ! 👋",
+          time: "10:02"
+        },
+        {
+          from: "trooky",
+          text: "Merci pour ton message ! 😊<br>Nous reviendrons vers toi rapidement.",
+          time: "10:15"
+        }
+      ],
+      mathieu: [
+        {
+          from: "mathieu",
+          text: "Salut ! Je viens de réserver ta calculatrice.",
+          time: "09:40"
+        },
+        {
+          from: "mathieu",
+          text: `
+          <strong>Mathieu a sollicité la réservation de ton produit :</strong>
+          <div class="d-flex mt-3 gap-3 align-items-start">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="Produit" style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;" />
+            <div>
+              <strong>Calculatrice Casio FX-991EX</strong><br>
+              <small>Calculatrice scientifique en excellent état.</small><br>
+              <span class="text-muted small">Aujourd’hui à 09:43</span>
+            </div>
+          </div>`,
+          time: "09:43"
+        },
+        {
+          from: "me",
+          text: "Merci, je confirme la réservation ! 📦",
+          time: "09:50"
+        }
+      ]
+    };
+  
+    let currentUser = "trooky";
+  
+    function renderMessages(user) {
+      messageList.innerHTML = "";
+      chatName.textContent = user === "trooky" ? "Équipe Trooky" : "Mathieu";
+      chatHeader.querySelector("img").src = user === "trooky"
+        ? "img/Trooky_logo1.png"
+        : "https://randomuser.me/api/portraits/men/75.jpg";
+  
+      conversations[user].forEach(msg => {
+        const div = document.createElement("div");
+        if (msg.from === "me") {
+          div.className = "d-flex justify-content-end";
+          div.innerHTML = `
+            <div class="p-3 bg-orange text-white rounded-start rounded-bottom shadow-sm" style="max-width: 75%;">
+              ${msg.text}
+              <div class="text-white-50 small mt-1">${msg.time}</div>
+            </div>`;
+        } else {
+          div.className = "d-flex align-items-start";
+          div.innerHTML = `
+            <div class="p-3 bg-white rounded-end rounded-bottom shadow-sm" style="max-width: 85%;">
+              ${msg.text}
+              <div class="text-muted small mt-1">${msg.time}</div>
+            </div>`;
+        }
+        messageList.appendChild(div);
+      });
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+  
+      const now = new Date();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  
+      conversations[currentUser].push({ from: "me", text, time });
+      renderMessages(currentUser);
+      input.value = "";
+  
+      // Simuler une réponse uniquement de Trooky
+      if (currentUser === "trooky") {
+        setTimeout(() => {
+          const responses = [
+            "C'est noté, merci beaucoup ! 👌",
+            "Nous vous contacterons très bientôt 😊",
+            "Bonne journée et merci d'utiliser Trooky !"
+          ];
+          const reply = responses[Math.floor(Math.random() * responses.length)];
+          const botTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          conversations.trooky.push({ from: "trooky", text: reply, time: botTime });
+          renderMessages("trooky");
+        }, 1000);
+      }
+    });
+  
+    conversationList.querySelectorAll("a").forEach(item => {
+      item.addEventListener("click", e => {
+        e.preventDefault();
+        conversationList.querySelectorAll("a").forEach(a => a.classList.remove("active"));
+        item.classList.add("active");
+        currentUser = item.getAttribute("data-user");
+        renderMessages(currentUser);
+      });
+    });
+  
+    renderMessages(currentUser);
+  </script>
+<style>
+  .text-orange {
+    color: #ff681d !important;
+  }
+  .bg-orange {
+    background-color: #ff681d !important;
+  }
+</style>
+
+
+<footer>&copy; 2025 Trooky — Tous droits réservés. Fait avec ♥ pour faciliter les échanges entre étudiants.</footer>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

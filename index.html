@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trooky</title>
+
+  <!-- Bootstrap & Poppins -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
+
+  <style>
+    /* Remove underlines globally */
+    a { text-decoration: none !important; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .navbar-nav {
+      display: flex;
+      gap: 10px;
+    }
+    @media (max-width: 991px) {
+      .navbar-nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .navbar-nav .nav-item + .nav-item {
+        margin-top: 10px;
+      }
+    }
+
+    .btn-create {
+      background: #ff681d;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 600;
+    }
+    .btn-create:hover { background: #ff8a1f; }
+
+    .btn-login {
+      background: transparent;
+      color: #ff681d;
+      border: 2px solid #ff681d;
+      border-radius: 30px;
+      padding: 7px 20px;
+      font-weight: 600;
+    }
+    .btn-login:hover {
+      background: #ff681d;
+      color: #fff;
+    }
+
+    .custom-toggler-icon::before {
+      content: "\2630";
+      font-size: 24px;
+    }
+    .custom-toggler-icon.open::before {
+      content: "\2715";
+      font-size: 26px;
+    }
+
+    /* Section titles */
+    .section-title {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: #ff681d;
+      margin-bottom: 1rem;
+    }
+
+    /* Hero */
+    .highlight {
+      background: #ff681d;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 5px;
+      transform: rotate(-2deg);
+      display: inline-block;
+      font-weight: 800;
+    }
+    .input-custom {
+      padding: 10px 16px;
+      border-radius: 50px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 8px;
+      color: #555;
+    }
+    .dropdown-list {
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      max-height: 180px;
+      overflow-y: auto;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      z-index: 999;
+      display: none;
+    }
+    .dropdown-list div {
+      padding: 10px 16px;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .dropdown-list div:hover { background: #f5f5f5; }
+    .button-custom {
+      background: #ff681d;
+      color: #fff;
+      padding: 12px 32px;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .button-custom:hover { background: #ff8a1f; }
+
+    .hero-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
+      animation: float 4s ease-in-out infinite;
+      margin-top: -20px;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Icon boxes */
+    .icon-box {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    .icon-box:hover {
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+      transform: translateY(-8px);
+    }
+    .icon-box i { font-size: 50px; color: #ff681d; margin-bottom: 20px; }
+    .icon-box h5 { font-weight: 700; margin-bottom: 10px; }
+
+    /* Item boxes */
+    .item-box {
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px 20px; background: #fff;
+      border: 1px solid #eee; border-radius: 12px;
+      min-width: 180px; transition: all 0.3s ease;
+      font-weight: 600; gap: 10px; color: #333; cursor: pointer;
+    }
+    .item-box i { font-size: 28px; color: #ff681d; }
+    .item-box:hover {
+      background: #ff681d; color: #fff; border-color: #ff681d;
+    }
+    .item-box:hover i { color: #fff; }
+
+    /* Orange banner */
+    .orange-banner {
+      background: linear-gradient(45deg,#ff681d,#ff8a1f);
+      color: #fff; text-align: center; padding: 80px 20px;
+      font-size: 2rem; font-weight: 700; display: flex;
+      align-items: center; justify-content: center;
+    }
+    #typewriter {
+      white-space: normal; word-break: break-word;
+      max-width:90%; margin:auto; font-size:2.5rem;
+    }
+    @media(max-width:768px){#typewriter{font-size:1.8rem}}
+    @media(max-width:480px){#typewriter{font-size:1.4rem}}
+
+    /* FAQ */
+    .faq-item { margin-bottom:1rem; border:1px solid #eee; border-radius:8px; overflow:hidden; }
+    .faq-question { background:#f9f9f9; padding:15px 20px; cursor:pointer; font-weight:bold; }
+    .faq-answer { display:none; padding:15px 20px; background:#fff; color:#555; }
+    .faq-active .faq-answer { display:block; }
+
+    /* Fill bag & Footer */
+    .btn-orange {
+      background: #ff681d; color: #fff; padding:12px 30px;
+      border-radius:50px; font-weight:700; text-transform:uppercase;
+      display: inline-block;
+    }
+    .btn-orange:hover { background:#ff8a1f }
+    footer {
+      background:#1a1a1a; color:#ccc; text-align:center; padding:50px 20px;
+    }
+    footer a {
+      color:#ff681d; margin:0 10px; font-size:1.5rem;
+    }
+    footer a:hover { color:#ff8a1f }
+
+    /* === Parceiros contínuo === */
+    .partner-slider {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      height: 120px;
+    }
+    .partner-track {
+      display: flex;
+      gap: 40px;
+      /* loop contínuo: ao chegar em -50% reinicia */
+      animation: scrollPartners 20s linear infinite;
+    }
+    .partner-track img {
+      height: 80px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      transition: filter 0.3s;
+    }
+    .partner-track img:hover {
+      filter: grayscale(0%);
+    }
+    @keyframes scrollPartners {
+      0%   { transform: translateX(0);     }
+      100% { transform: translateX(-50%); }
+    }
+    .btn-store {
+      background: #ff681d;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 25px;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 20px;
+    }
+    .btn-store:hover {
+      background: #ff8a1f;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/Trooky_logo.png" alt="Trooky Logo" style="width:130px;">
+      </a>
+      <button class="navbar-toggler" id="menuButton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="custom-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item me-3">
+            <select id="languageSelect" class="form-select w-auto">
+              <option value="fr" selected>FR</option>
+              <option value="pt">PT</option>
+              <option value="en">EN</option>
+              <option value="es">ES</option>
+            </select>
+          </li>
+          <li class="nav-item">
+            <a href="inscription.html" id="createAccountBtn" class="btn-create">Créer un compte</a>
+          </li>
+          <li class="nav-item">
+            <a id="loginBtn" class="btn-login" href="login.html"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="container py-4">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4">
+        <h1 id="mainTitle" class="fw-bold mb-3"></h1>
+        <div class="row g-2">
+          <div class="col-6">
+            <select id="countrySelect" class="form-select input-custom"></select>
+          </div>
+          <div class="col-6">
+            <div class="position-relative">
+              <input id="locationInput" class="input-custom" placeholder="" autocomplete="off"
+                     onclick="openDropdown('locationOptions')" oninput="filterOptions('locationInput','locationOptions')">
+              <div id="locationOptions" class="dropdown-list"></div>
+            </div>
+          </div>
+        </div>
+        <div class="position-relative mt-3">
+          <input id="searchInput" class="input-custom" placeholder="" autocomplete="off"
+                 onclick="openDropdown('searchOptions')" oninput="filterOptions('searchInput','searchOptions')">
+          <div id="searchOptions" class="dropdown-list"></div>
+        </div>
+        <button id="searchBtn" class="button-custom mt-2"></button>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="img/Trooky.jpg" class="hero-img" alt="Trooky">
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="aboutTrooky" class="py-5" style="background:#f9f9f9;">
+    <div class="container text-center">
+      <h2 id="aboutTitle" class="section-title"></h2>
+      <p id="aboutSubtitle" class="section-subtitle"></p>
+      <div class="row g-5 justify-content-center">
+        <div class="col-md-4">
+          <div class="icon-box">
+            <i class="material-icons">flag</i>
+            <h5 id="missionTitle"></h5>
+            <p id="missionText"></p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="icon-box">
+            <i class="material-icons">visibility</i>
+            <h5 id="visionTitle"></h5>
+            <p id="visionText"></p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="icon-box">
+            <i class="material-icons">lightbulb</i>
+            <h5 id="innovationTitle"></h5>
+            <p id="innovationText"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="howItWorks" class="py-5">
+    <div class="container text-center">
+      <h2 id="howWorksTitle" class="section-title"></h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-3 col-10">
+          <div class="icon-box">
+            <i class="material-icons">person_add</i>
+            <h5 id="inscriptionTitle"></h5>
+            <p id="inscriptionText"></p>
+          </div>
+        </div>
+        <div class="col-md-3 col-10">
+          <div class="icon-box">
+            <i class="material-icons">inventory_2</i>
+            <h5 id="depositTitle"></h5>
+            <p id="depositText"></p>
+          </div>
+        </div>
+        <div class="col-md-3 col-10">
+          <div class="icon-box">
+            <i class="material-icons">attach_money</i>
+            <h5 id="coinsTitle"></h5>
+            <p id="coinsText"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ITEMS -->
+  <section id="availableItems" class="py-5" style="background:#f9f9f9;">
+    <div class="container text-center">
+      <h2 id="itemsTitle" class="section-title"></h2>
+      <div id="itemsContainer" class="d-flex flex-wrap justify-content-center gap-3 mt-4"></div>
+    </div>
+  </section>
+
+  <!-- BANNER -->
+  <section class="orange-banner"><span id="typewriter"></span></section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-5">
+    <div class="container">
+      <h2 id="faqTitle" class="section-title text-center"></h2>
+      <div id="faqContainer"></div>
+    </div>
+  </section>
+
+  <!-- FILL BAG -->
+  <section id="fillYourBag" class="py-5" style="background:#f9f9f9;">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start mb-4 mb-md-0">
+          <h2 id="fillBagTitle" class="section-title" style="font-size:3rem;line-height:1.2;"></h2>
+          <a id="fillBagButton" href="#availableItems" class="btn-orange mt-3"></a>
+        </div>
+        <div class="col-md-6 text-center">
+          <img src="img/trookysac.png" alt="Trooky Sac" style="max-width:100%;height:auto;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCEIROS -->
+  <section id="partnersSection" class="py-5" style="background:#fff;">
+    <div class="container text-center">
+      <h2 id="partnersTitle" class="section-title"></h2>
+      <div class="partner-slider mt-4">
+        <div class="partner-track">
+          <img src="img/partner1.png" alt="Parceiro 1">
+          <img src="img/partner2.png" alt="Parceiro 2">
+          <img src="img/partner3.png" alt="Parceiro 3">
+          <img src="img/partner4.png" alt="Parceiro 4">
+          <img src="img/partner5.png" alt="Parceiro 5">
+          <!-- duplicados para loop -->
+          <img src="img/partner1.png" alt="Parceiro 1">
+          <img src="img/partner2.png" alt="Parceiro 2">
+          <img src="img/partner3.png" alt="Parceiro 3">
+          <img src="img/partner4.png" alt="Parceiro 4">
+          <img src="img/partner5.png" alt="Parceiro 5">
+        </div>
+      </div>
+      <a id="partnersButton" href="store.html" class="btn-store"></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container text-center">
+      <img src="img/Trooky_logo.png" alt="Trooky Logo" style="width:100px;" class="mb-3">
+      <p id="footerCopy"></p>
+      <div class="mt-3">
+        <a href="#"><i class="material-icons">facebook</i></a>
+        <a href="#"><i class="material-icons">instagram</i></a>
+        <a href="#"><i class="material-icons">email</i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const translations = {
+      fr: {
+        createAccount:"Créer un compte", login:"Se connecter",
+        searchPlaceholder:"Rechercher un objet", locationPlaceholder:"Université/IUT", searchButton:"Rechercher",
+        title:"Explore, sélectionne et récupère des objets dans ton", highlight:"université",
+        aboutTitle:"Qu'est-ce que Trooky ?", aboutSubtitle:"Trooky est une plateforme de partage d'objets entre étudiants, pour un campus plus solidaire.",
+        missionTitle:"Mission", missionText:"Favoriser le partage et prolonger la vie des objets au sein de la communauté étudiante.",
+        visionTitle:"Vision", visionText:"Créer un campus où la durabilité et la collaboration sont au cœur de la vie quotidienne.",
+        innovationTitle:"Innovation", innovationText:"Apporter des solutions numériques pour rendre le recyclage simple et pratique.",
+        howWorksTitle:"Comment ça fonctionne ?", inscriptionTitle:"Inscription", inscriptionText:"Crée ton compte rapidement et gratuitement.",
+        depositTitle:"Dépôt", depositText:"Dépose tes objets inutilisés et gagne des Trooky Coins.",
+        coinsTitle:"Trooky Coins", coinsText:"Utilise tes coins pour récupérer ce dont tu as besoin.",
+        itemsTitle:"Articles Disponibles",
+        items:["Livres","Vêtements et Accessoires","Électronique","Meubles et Maison","Loisirs et Multimédia","Mobilité","Décoration","Autres"],
+        bannerBase:"AVEC ", bannerPhrase:"TROOKY RIEN SE JETTE, TOUT SE PARTAGE",
+        faqTitle:"Foire aux Questions",
+        faq:[
+          {q:"Trooky est-il gratuit ?",a:"Oui ! L'inscription et l'utilisation de Trooky sont totalement gratuites pour tous les étudiants."},
+          {q:"Comment récupérer un objet ?",a:"Une fois connecté, tu peux contacter le propriétaire directement via la plateforme pour organiser la récupération."},
+          {q:"Puis-je donner mes propres objets ?",a:"Absolument ! Plus d'articles disponibles signifie plus d'opportunités de partage."}
+        ],
+        fillBagTitle:"Prêt à remplir<br>votre sac?", fillBagButton:"Explorer",
+        footerCopy:"© 2025 Trooky. Tous droits réservés.",
+        partnersTitle:"Utilisez vos TrookyCoins pour obtenir des réductions et plus encore avec nos partenaires :",
+        partnersButton:"Visiter la boutique"
+      },
+      pt: {
+        createAccount:"Criar conta", login:"Entrar",
+        searchPlaceholder:"Procurar um objeto", locationPlaceholder:"Universidade/IUT", searchButton:"Pesquisar",
+        title:"Explora, seleciona e recupera objetos na tua", highlight:"universidade",
+        aboutTitle:"O que é o Trooky?", aboutSubtitle:"Trooky é uma plataforma de compartilhamento de objetos entre estudantes, para um campus mais solidário.",
+        missionTitle:"Missão", missionText:"Promover o compartilhamento e prolongar a vida útil dos objetos na comunidade estudantil.",
+        visionTitle:"Visão", visionText:"Criar um campus onde a sustentabilidade e a colaboração estão no centro do dia a dia.",
+        innovationTitle:"Inovação", innovationText:"Oferecer soluções digitais para tornar a reciclagem simples e prática.",
+        howWorksTitle:"Como funciona?", inscriptionTitle:"Inscrição", inscriptionText:"Cria tua conta de forma rápida e gratuita.",
+        depositTitle:"Depósito", depositText:"Deposita teus objetos não utilizados e ganha Trooky Coins.",
+        coinsTitle:"Trooky Coins", coinsText:"Usa teus coins para recuperar o que precisares.",
+        itemsTitle:"Artigos Disponíveis",
+        items:["Livros","Roupas e Acessórios","Eletrônicos","Móveis e Casa","Lazer e Multimídia","Mobilidade","Decoração","Outros"],
+        bannerBase:"COM ", bannerPhrase:"TROOKY NADA SE DEITA, TUDO SE PARTILHA",
+        faqTitle:"Perguntas Frequentes",
+        faq:[
+          {q:"Trooky é gratuito?",a:"Sim! A inscrição e uso do Trooky são totalmente gratuitos para todos os estudantes."},
+          {q:"Como recuperar um objeto?",a:"Depois de logado, podes contatar o proprietário para combinar a retirada."},
+          {q:"Posso doar meus próprios objetos?",a:"Claro! Quanto mais artigos disponíveis, mais oportunidades de partilha."}
+        ],
+        fillBagTitle:"Pronto para encher<br>a tua sacola?", fillBagButton:"Explorar",
+        footerCopy:"© 2025 Trooky. Todos os direitos reservados.",
+        partnersTitle:"Use os seus TrookyCoins para pegar descontos e outras cenas com nossos parceiros:",
+        partnersButton:"Visitar a loja"
+      },
+      en: {
+        createAccount:"Create Account", login:"Sign In",
+        searchPlaceholder:"Search for an item", locationPlaceholder:"University/IUT", searchButton:"Search",
+        title:"Explore, select and retrieve objects in your", highlight:"university",
+        aboutTitle:"What is Trooky?", aboutSubtitle:"Trooky is a platform for sharing items among students, for a more supportive campus.",
+        missionTitle:"Mission", missionText:"Encourage sharing and extend the life of objects within the student community.",
+        visionTitle:"Vision", visionText:"Create a campus where sustainability and collaboration are central to everyday life.",
+        innovationTitle:"Innovation", innovationText:"Bring digital solutions to make recycling simple and practical.",
+        howWorksTitle:"How it works?", inscriptionTitle:"Registration", inscriptionText:"Create your account quickly and for free.",
+        depositTitle:"Deposit", depositText:"Drop off unused items and earn Trooky Coins.",
+        coinsTitle:"Trooky Coins", coinsText:"Use your coins to get what you need.",
+        itemsTitle:"Available Items",
+        items:["Books","Clothing & Accessories","Electronics","Furniture & Home","Leisure & Multimedia","Mobility","Decoration","Others"],
+        bannerBase:"WITH ", bannerPhrase:"TROOKY NOTHING GETS THROWN AWAY, EVERYTHING IS SHARED",
+        faqTitle:"Frequently Asked Questions",
+        faq:[
+          {q:"Is Trooky free?",a:"Yes! Registration and use of Trooky are totally free for all students."},
+          {q:"How to recover an item?",a:"Once logged in, you can contact the owner directly to arrange retrieval."},
+          {q:"Can I donate my own items?",a:"Absolutely! More items available means more sharing opportunities."}
+        ],
+        fillBagTitle:"Ready to fill<br>your bag?", fillBagButton:"Explore",
+        footerCopy:"© 2025 Trooky. All rights reserved.",
+        partnersTitle:"Use your TrookyCoins for discounts and more with our partners:",
+        partnersButton:"Visit store"
+      },
+      es: {
+        createAccount:"Crear cuenta", login:"Iniciar sesión",
+        searchPlaceholder:"Buscar un objeto", locationPlaceholder:"Universidad/IUT", searchButton:"Buscar",
+        title:"Explora, selecciona y recupera objetos en tu", highlight:"universidad",
+        aboutTitle:"¿Qué es Trooky?", aboutSubtitle:"Trooky es una plataforma para compartir objetos entre estudiantes, para un campus más solidario.",
+        missionTitle:"Misión", missionText:"Fomentar compartir y prolongar la vida útil de los objetos en la comunidad estudiantil.",
+        visionTitle:"Visión", visionText:"Crear un campus donde sostenibilidad y colaboración sean el centro de la vida diaria.",
+        innovationTitle:"Innovación", innovationText:"Ofrecer soluciones digitales para hacer que reciclar sea sencillo y práctico.",
+        howWorksTitle:"¿Cómo funciona?", inscriptionTitle:"Registro", inscriptionText:"Crea tu cuenta de forma rápida y gratuita.",
+        depositTitle:"Depósito", depositText:"Deposita tus objetos no utilizados y gana Trooky Coins.",
+        coinsTitle:"Trooky Coins", coinsText:"Utiliza tus coins para conseguir lo que necesitas.",
+        itemsTitle:"Artículos Disponibles",
+        items:["Libros","Ropa y Accesorios","Electrónica","Muebles y Hogar","Ocio y Multimedia","Movilidad","Decoración","Otros"],
+        bannerBase:"CON ", bannerPhrase:"TROOKY NADA SE TIRA, TODO SE COMPARTE",
+        faqTitle:"Preguntas Frecuentes",
+        faq:[
+          {q:"¿Trooky es gratuito?",a:"¡Sí! Registrarte y usar Trooky es gratuito para todos los estudiantes."},
+          {q:"¿Cómo recuperar un objeto?",a:"Una vez conectado, contacta al propietario para organizar la recogida."},
+          {q:"¿Puedo donar mis propios objetos?",a:"¡Claro! Más artículos significa más oportunidades de compartir."}
+        ],
+        fillBagTitle:"¿Listo para llenar<br>tu mochila?", fillBagButton:"Explorar",
+        footerCopy:"© 2025 Trooky. Todos los derechos reservados.",
+        partnersTitle:"Usa tus TrookyCoins para obtener descuentos y más con nuestros socios:",
+        partnersButton:"Visitar tienda"
+      }
+    };
+
+    const countryList = [
+      { code: "FR", names: { fr: "France", pt: "França", en: "France", es: "Francia" } },
+      { code: "PT", names: { fr: "Portugal", pt: "Portugal", en: "Portugal", es: "Portugal" } },
+      { code: "BR", names: { fr: "Brésil", pt: "Brasil", en: "Brazil", es: "Brasil" } },
+      { code: "AO", names: { fr: "Angola", pt: "Angola", en: "Angola", es: "Angola" } },
+      { code: "US", names: { fr: "États-Unis", pt: "Estados Unidos", en: "United States", es: "Estados Unidos" } },
+      { code: "ES", names: { fr: "Espagne", pt: "Espanha", en: "Spain", es: "España" } }
+    ];
+
+    const universities = {
+      FR:["Sorbonne Université","Université de Lyon","Université Paris-Saclay"],
+      PT:["Universidade de Lisboa","Universidade do Porto"],
+      BR:["USP","UFRJ"],
+      AO:["Universidade Agostinho Neto"],
+      US:["Harvard","Stanford"],
+      ES:["Universidad de Barcelona"]
+    };
+
+    let currentLang = 'fr';
+
+    function openDropdown(id) {
+      closeDropdowns();
+      document.getElementById(id).style.display = 'block';
+    }
+    function closeDropdowns() {
+      document.querySelectorAll('.dropdown-list').forEach(d => d.style.display = 'none');
+    }
+    function filterOptions(inp, listId) {
+      const v = document.getElementById(inp).value.toLowerCase();
+      document.getElementById(listId).querySelectorAll('div').forEach(d => {
+        d.style.display = d.textContent.toLowerCase().includes(v) ? 'flex' : 'none';
+      });
+    }
+    function selectOption(v) {
+      document.getElementById('searchInput').value = v;
+      closeDropdowns();
+    }
+    function selectLocation(v) {
+      document.getElementById('locationInput').value = v;
+      closeDropdowns();
+    }
+
+    function loadCountrySelect() {
+      const sel = document.getElementById('countrySelect');
+      sel.innerHTML = '';
+      countryList.forEach(c => {
+        const o = document.createElement('option');
+        o.value = c.code;
+        o.textContent = c.names[currentLang];
+        sel.appendChild(o);
+      });
+    }
+
+    function loadUniversities(countryCode) {
+      const list = document.getElementById('locationOptions');
+      list.innerHTML = '';
+      (universities[countryCode] || []).forEach(u => {
+        const d = document.createElement('div');
+        d.textContent = u;
+        d.onclick = () => selectLocation(u);
+        list.appendChild(d);
+      });
+    }
+
+    function loadItems(lang) {
+      const cont = document.getElementById('itemsContainer');
+      cont.innerHTML = '';
+      translations[lang].items.forEach(label => {
+        const iconMap = {
+          "Livres":"menu_book","Vêtements et Accessoires":"checkroom","Électronique":"laptop",
+          "Meubles et Maison":"weekend","Loisirs et Multimédia":"sports_esports","Mobilité":"directions_bike",
+          "Décoration":"brush","Autres":"category",
+          "Livros":"menu_book","Roupas e Acessórios":"checkroom","Eletrônicos":"laptop","Móveis e Casa":"weekend",
+          "Lazer e Multimídia":"sports_esports","Mobilidade":"directions_bike","Decoração":"brush","Outros":"category",
+          "Books":"menu_book","Clothing & Accessories":"checkroom","Electronics":"laptop","Furniture & Home":"weekend",
+          "Leisure & Multimedia":"sports_esports","Mobility":"directions_bike","Decoration":"brush","Others":"category",
+          "Libros":"menu_book","Ropa y Accesorios":"checkroom","Electrónica":"laptop","Muebles y Hogar":"weekend",
+          "Ocio y Multimedia":"sports_esports","Movilidad":"directions_bike","Decoración":"brush","Otros":"category"
+        };
+        cont.innerHTML += `
+          <div class="item-box">
+            <i class="material-icons">${iconMap[label]}</i><span>${label}</span>
+          </div>`;
+      });
+    }
+
+    function loadSearchOptions(lang) {
+      const list = document.getElementById('searchOptions');
+      list.innerHTML = '';
+      translations[lang].items.forEach(label => {
+        const iconMap = {
+          "Livres":"menu_book","Vêtements et Accessoires":"checkroom","Électronique":"laptop",
+          "Meubles et Maison":"weekend","Loisirs et Multimédia":"sports_esports","Mobilité":"directions_bike",
+          "Décoração":"brush","Autres":"category",
+          "Livros":"menu_book","Roupas e Acessórios":"checkroom","Eletrônicos":"laptop","Móveis e Casa":"weekend",
+          "Lazer e Multimídia":"sports_esports","Mobilidade":"directions_bike","Decoração":"brush","Outros":"category",
+          "Books":"menu_book","Clothing & Accessories":"checkroom","Electronics":"laptop","Furniture & Home":"weekend",
+          "Leisure & Multimedia":"sports_esports","Mobility":"directions_bike","Decoration":"brush","Others":"category",
+          "Libros":"menu_book","Ropa y Accesorios":"checkroom","Electrónica":"laptop","Muebles y Hogar":"weekend",
+          "Ocio y Multimedia":"sports_esports","Movilidad":"directions_bike","Decoración":"brush","Otros":"category"
+        };
+        const d = document.createElement('div');
+        d.innerHTML = `<i class="material-icons">${iconMap[label]}</i>${label}`;
+        d.onclick = () => selectOption(label);
+        list.appendChild(d);
+      });
+    }
+
+    let baseText = '', dynamicText = '', idx = 0, dir = 1, delay = 250;
+    function typeEffect() {
+      document.getElementById('typewriter').textContent = baseText + dynamicText.substring(0, idx);
+      if (dir > 0) {
+        if (idx < dynamicText.length) idx++;
+        else { dir = -1; setTimeout(typeEffect, 2000); return; }
+      } else {
+        if (idx > 0) idx--;
+        else dir = 1;
+      }
+      setTimeout(typeEffect, delay);
+    }
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+      document.documentElement.lang = lang;
+      document.getElementById('createAccountBtn').innerText = t.createAccount;
+      document.getElementById('loginBtn').innerText = t.login;
+      document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+      document.getElementById('locationInput').placeholder = t.locationPlaceholder;
+      document.getElementById('searchBtn').innerText = t.searchButton;
+      document.getElementById('mainTitle').innerHTML = `${t.title} <span class="highlight">${t.highlight}</span>`;
+      document.getElementById('aboutTitle').innerText = t.aboutTitle;
+      document.getElementById('aboutSubtitle').innerText = t.aboutSubtitle;
+      document.getElementById('missionTitle').innerText = t.missionTitle;
+      document.getElementById('missionText').innerText = t.missionText;
+      document.getElementById('visionTitle').innerText = t.visionTitle;
+      document.getElementById('visionText').innerText = t.visionText;
+      document.getElementById('innovationTitle').innerText = t.innovationTitle;
+      document.getElementById('innovationText').innerText = t.innovationText;
+      document.getElementById('howWorksTitle').innerText = t.howWorksTitle;
+      document.getElementById('inscriptionTitle').innerText = t.inscriptionTitle;
+      document.getElementById('inscriptionText').innerText = t.inscriptionText;
+      document.getElementById('depositTitle').innerText = t.depositTitle;
+      document.getElementById('depositText').innerText = t.depositText;
+      document.getElementById('coinsTitle').innerText = t.coinsTitle;
+      document.getElementById('coinsText').innerText = t.coinsText;
+      document.getElementById('itemsTitle').innerText = t.itemsTitle;
+      loadItems(lang);
+      loadSearchOptions(lang);
+      baseText = t.bannerBase;
+      dynamicText = t.bannerPhrase;
+      idx = 0; dir = 1; typeEffect();
+
+      document.getElementById('faqTitle').innerText = t.faqTitle;
+      const faqC = document.getElementById('faqContainer');
+      faqC.innerHTML = '';
+      t.faq.forEach(f => {
+        faqC.innerHTML += `
+          <div class="faq-item">
+            <div class="faq-question">${f.q}</div>
+            <div class="faq-answer">${f.a}</div>
+          </div>`;
+      });
+      document.querySelectorAll('.faq-question').forEach(q =>
+        q.onclick = () => q.parentElement.classList.toggle('faq-active')
+      );
+
+      document.getElementById('fillBagTitle').innerHTML = t.fillBagTitle;
+      document.getElementById('fillBagButton').innerText = t.fillBagButton;
+      document.getElementById('footerCopy').innerText = t.footerCopy;
+
+      // partners section
+      document.getElementById('partnersTitle').innerText  = t.partnersTitle;
+      document.getElementById('partnersButton').innerText = t.partnersButton;
+
+      loadCountrySelect();
+      loadUniversities(document.getElementById('countrySelect').value);
+    }
+
+    window.onload = () => {
+      loadCountrySelect();
+      loadUniversities(countryList[0].code);
+      document.getElementById('languageSelect').onchange = e => changeLanguage(e.target.value);
+      document.getElementById('countrySelect').onchange = e => loadUniversities(e.target.value);
+      document.getElementById('menuButton').onclick = () =>
+        document.querySelector('.custom-toggler-icon').classList.toggle('open');
+      changeLanguage('fr');
+    };
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.position-relative')) closeDropdowns();
+    });
+  </script>
+  
+  <script>
+    document.getElementById('searchBtn').addEventListener('click', function() {
+      window.location.href = 'vendas.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créer un compte - Trooky</title>
+
+  <!-- Bootstrap + Fontes -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
+
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      padding-top: 80px;
+    }
+    .navbar {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .btn-create {
+      background: #ff681d;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-weight: 600;
+    }
+    .btn-create:hover {
+      background: #ff8a1f;
+    }
+    .btn-login {
+      background: transparent;
+      color: #ff681d;
+      border: 2px solid #ff681d;
+      border-radius: 30px;
+      padding: 7px 20px;
+      font-weight: 600;
+    }
+    .btn-login:hover {
+      background: #ff681d;
+      color: #fff;
+    }
+    .navbar-nav {
+      gap: 10px;
+    }
+    .custom-toggler-icon::before {
+      content: "\2630"; /* ☰ */
+      font-size: 24px;
+    }
+    .custom-toggler-icon.open::before {
+      content: "\2715"; /* ✕ */
+      font-size: 26px;
+    }
+    @media (max-width: 991px) {
+      .navbar-nav {
+        flex-direction: column;
+      }
+    }
+    .form-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    .form-label {
+      font-weight: 600;
+      color: #333;
+    }
+    .form-control::placeholder {
+      color: #999 !important;
+      opacity: 1;
+    }
+    .btn-orange {
+      background: #ff681d;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: 50px;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+    .btn-orange:hover {
+      background: #ff8a1f;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #555;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><img src="img/Trooky_logo.png" alt="Trooky Logo" style="width:130px;"></a>
+      <button class="navbar-toggler" id="menuButton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="custom-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item me-3">
+            <select id="languageSelect" class="form-select w-auto">
+              <option value="fr" selected>FR</option>
+              <option value="pt">PT</option>
+              <option value="en">EN</option>
+              <option value="es">ES</option>
+            </select>
+          </li>
+          <li class="nav-item">
+            <a href="inscription.html" id="createAccountBtn" class="btn-create" style="text-decoration:none;">
+              Créer un compte
+            </a>
+          </li>
+          <li class="nav-item">
+            <a id="loginBtn" class="btn-login" href="login.html" style="text-decoration: none;"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- FORMULÁRIO -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <div class="form-container">
+        <h2 id="titleForm" class="text-center" style="color:#ff681d; font-weight:700;">Créer un compte</h2>
+
+        <form id="studentForm" action="#" method="POST" class="mt-4" enctype="multipart/form-data">
+          
+          <!-- Nome completo -->
+          <div class="mb-3">
+            <label for="fullName" class="form-label">Nom Complet</label>
+            <input type="text" class="form-control" id="fullName" placeholder="Votre nom complet" required>
+          </div>
+
+          <!-- País -->
+          <div class="mb-3">
+            <label for="country" class="form-label">Pays</label>
+            <select class="form-select" id="country" required>
+              <option value="">Sélectionnez votre pays</option>
+              <option value="France">France</option>
+              <option value="Brésil">Brésil</option>
+              <option value="Canada">Canada</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+
+          <!-- Instituição -->
+          <div class="mb-3">
+            <label for="institution" class="form-label">Où étudies-tu ?</label>
+            <input type="text" class="form-control" id="institution" placeholder="Nom de ton institution" required>
+          </div>
+
+          <!-- E-mail -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Adresse Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Ton adresse email" required>
+          </div>
+
+          <!-- Número de matrícula -->
+          <div class="mb-3">
+            <label for="studentId" class="form-label">Numéro d'identification étudiant</label>
+            <input type="text" class="form-control" id="studentId" placeholder="Ex: 20231234" required>
+          </div>
+
+          <!-- Upload comprovante estudantil -->
+          <div class="mb-3">
+            <label for="studentProof" class="form-label">Preuve d'inscription (Carte étudiante, certificat, etc.)</label>
+            <input type="file" class="form-control" id="studentProof" accept=".pdf,.jpg,.jpeg,.png" required>
+            <small class="text-muted">Formats acceptés : PDF, JPG, PNG</small>
+          </div>
+
+          <!-- Telefone -->
+          <div class="mb-3">
+            <label for="contact" class="form-label">Contact Téléphonique</label>
+            <input type="tel" class="form-control" id="contact" placeholder="Ton numéro de téléphone" required>
+          </div>
+
+          <!-- Senha -->
+          <div class="mb-3">
+            <label for="password" class="form-label">Mot de Passe</label>
+            <input type="password" class="form-control" id="password" placeholder="Créer un mot de passe" required>
+          </div>
+
+          <!-- Confirmação -->
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirme ton Mot de Passe</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme ton mot de passe" required>
+          </div>
+
+          <!-- Botão -->
+          <button type="submit" class="btn-orange mt-3 w-100">Créer mon compte</button>
+          <a href="index.html" class="back-link d-block mt-2 text-center">← Retour à l'accueil</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAY DE CONFIRMAÇÃO (oculto por padrão) -->
+<div id="confirmationOverlay" class="d-none">
+  <div class="overlay-content text-center">
+    <h4>Inscription envoyée !</h4>
+    <p>Votre compte sera vérifié sous peu. Vous pourrez vous connecter dès qu’il sera approuvé.</p>
+  </div>
+</div>
+
+<style>
+  /* Estilos do overlay */
+  #confirmationOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+  }
+  .overlay-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 90%;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
+  }
+</style>
+
+<script>
+  document.getElementById("studentForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    // Oculta o formulário
+    this.closest('.form-container').classList.add('d-none');
+    // Exibe o overlay
+    const overlay = document.getElementById("confirmationOverlay");
+    overlay.classList.remove("d-none");
+    
+    // Após 3 segundos, redireciona para a página de login
+    setTimeout(function() {
+      window.location.href = 'login.html';
+    }, 3000);
+  });
+</script>
+
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const translations = {
+      fr: {
+        createAccount:"Créer un compte", login:"Se connecter",
+        title:"Créer un compte", countryLabel:"Pays",
+        countryOptions:["France","Portugal","Brésil","Angola","États-Unis","Espagne"],
+        institutionLabel:"Où étudies-tu ?", institutionPlaceholder:"Nom de ton institution",
+        emailLabel:"Adresse Email", emailPlaceholder:"Entrez votre email",
+        contactLabel:"Contact Téléphonique", contactPlaceholder:"Votre numéro de téléphone",
+        passwordLabel:"Mot de Passe", passwordPlaceholder:"Créer un mot de passe",
+        confirmLabel:"Confirme ton Mot de Passe", confirmPlaceholder:"Confirme ton mot de passe",
+        submitButton:"Créer mon compte", backLink:"← Retour à l'accueil"
+      },
+      pt: {
+        createAccount:"Criar conta", login:"Entrar",
+        title:"Criar Conta", countryLabel:"País",
+        countryOptions:["França","Portugal","Brasil","Angola","Estados Unidos","Espanha"],
+        institutionLabel:"Onde Estudas?", institutionPlaceholder:"Nome da tua instituição",
+        emailLabel:"Endereço de Email", emailPlaceholder:"Insira seu email",
+        contactLabel:"Contato Telefônico", contactPlaceholder:"Seu número de telefone",
+        passwordLabel:"Senha", passwordPlaceholder:"Crie uma senha",
+        confirmLabel:"Confirme a Senha", confirmPlaceholder:"Confirme sua senha",
+        submitButton:"Criar minha conta", backLink:"← Voltar à página inicial"
+      },
+      en: {
+        createAccount:"Create Account", login:"Sign In",
+        title:"Create Account", countryLabel:"Country",
+        countryOptions:["France","Portugal","Brazil","Angola","United States","Spain"],
+        institutionLabel:"Where do you study?", institutionPlaceholder:"Name of your institution",
+        emailLabel:"Email Address", emailPlaceholder:"Enter your email",
+        contactLabel:"Phone Contact", contactPlaceholder:"Your phone number",
+        passwordLabel:"Password", passwordPlaceholder:"Create a password",
+        confirmLabel:"Confirm Password", confirmPlaceholder:"Confirm your password",
+        submitButton:"Create my account", backLink:"← Back to homepage"
+      },
+      es: {
+        createAccount:"Crear cuenta", login:"Iniciar sesión",
+        title:"Crear Cuenta", countryLabel:"País",
+        countryOptions:["Francia","Portugal","Brasil","Angola","Estados Unidos","España"],
+        institutionLabel:"¿Dónde estudias?", institutionPlaceholder:"Nombre de tu institución",
+        emailLabel:"Correo Electrónico", emailPlaceholder:"Introduce tu correo",
+        contactLabel:"Contacto Telefónico", contactPlaceholder:"Tu número de teléfono",
+        passwordLabel:"Contraseña", passwordPlaceholder:"Crea una contraseña",
+        confirmLabel:"Confirma tu Contraseña", confirmPlaceholder:"Confirma tu contraseña",
+        submitButton:"Crear mi cuenta", backLink:"← Volver a la página principal"
+      }
+    };
+
+    function populateCountryOptions(arr) {
+      const sel = document.getElementById('country');
+      sel.innerHTML = `<option value="">${arr[0] ? "":""}</option>`;
+      arr.forEach(opt => {
+        const o = document.createElement('option');
+        o.value = opt;
+        o.textContent = opt;
+        sel.appendChild(o);
+      });
+    }
+
+    document.getElementById('languageSelect').addEventListener('change', function() {
+      const lang = this.value;
+      const t = translations[lang];
+
+      // Navbar buttons
+      document.getElementById('createAccountBtn').innerText = t.createAccount;
+      document.getElementById('loginBtn').innerText = t.login;
+
+      // Form texts
+      document.getElementById('titleForm').innerText = t.title;
+      document.getElementById('labelCountry').innerText = t.countryLabel;
+      populateCountryOptions(t.countryOptions);
+      document.getElementById('labelInstitution').innerText = t.institutionLabel;
+      document.getElementById('institution').placeholder = t.institutionPlaceholder;
+      document.getElementById('labelEmail').innerText = t.emailLabel;
+      document.getElementById('email').placeholder = t.emailPlaceholder;
+      document.getElementById('labelContact').innerText = t.contactLabel;
+      document.getElementById('contact').placeholder = t.contactPlaceholder;
+      document.getElementById('labelPassword').innerText = t.passwordLabel;
+      document.getElementById('password').placeholder = t.passwordPlaceholder;
+      document.getElementById('labelConfirm').innerText = t.confirmLabel;
+      document.getElementById('confirmPassword').placeholder = t.confirmPlaceholder;
+      document.getElementById('btnSubmit').innerText = t.submitButton;
+      document.getElementById('linkBack').innerText = t.backLink;
+    });
+
+    // Mobile menu icon toggle
+    document.getElementById('menuButton').addEventListener('click', function() {
+      this.querySelector('.custom-toggler-icon').classList.toggle('open');
+    });
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      // default language = fr
+      const event = new Event('change');
+      document.getElementById('languageSelect').dispatchEvent(event);
+    });
+  </script>
+</body>
+</html>
