@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" sizes="32x32" href="Trooky_logo1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
 
 
   <style>
@@ -214,7 +214,7 @@
 <nav class="navbar fixed-top d-none d-md-flex justify-content-between align-items-center">
   <div>
     <a href="index.html">
-      <img src="Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+      <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
     </a>
   </div>
   <div class="d-flex align-items-center gap-3">
@@ -278,7 +278,7 @@
   <div class="nav-mobile__inner d-flex justify-content-between align-items-center">
     <!-- Logo -->
     <a href="index.html" class="nav-mobile__logo">
-      <img src="Trooky_logo.png" alt="Trooky Logo" />
+      <img src="img/Trooky_logo.png" alt="Trooky Logo" />
     </a>
 
     <!-- Coins & Profile -->
@@ -308,20 +308,9 @@
     </div>
   </div>
 
-  <style>
-    .btn-grey {
-  background-color: #e0e0e0;
-  color: #333;
-  border: none;
-}
-
-  </style>
-  
-
   <!-- Action Buttons -->
   <div class="nav-mobile__actions d-flex justify-content-center gap-3 mt-4" style="margin-bottom: 10px;">
-    <button class="nav-mobile__btn btn btn-grey">Publier</button>
-
+    <button class="nav-mobile__btn btn btn-orange">Publier</button>
     <button class="nav-mobile__icon-btn" title="Mes réservés" onclick="location.href='reserves.html'">
       <span class="material-symbols-outlined ">bookmark</span>
     </button>
@@ -343,8 +332,9 @@
 
   <!-- Custom Styles for Spacing & Alignment -->
   <style>
-    .nav-mobile__icon-btn .material-symbols-outlined {
-  font-size: 28px; /* ou 32px, 36px, conforme desejar */
+.nav-mobile__icon-btn .material-symbols-outlined {
+  color: #ff681d;
+  font-size: 28px; /* opcional, para aumentar o tamanho */
 }
 
     .nav-mobile {
@@ -382,7 +372,7 @@
 
 
 <!-- FILTROS -->
-<div class="container mt-4 filter-wrapper">
+<div class="container mt-6 filter-wrapper">
   <div class="row g-3 align-items-center">
     <div class="col-md">
       <select class="form-select" id="locationSelect">
