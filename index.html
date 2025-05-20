@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" sizes="32x32" href="Trooky_logo1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
 
   <style>
     /* Remove underlines globally */
@@ -258,10 +258,10 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg fixed-top">
+  <nav class="navbar navbar-expand-lg fixed-top navo">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
-        <img src="Trooky_logo.png" alt="Trooky Logo" style="width:130px;">
+        <img src="img/Trooky_logo.png" alt="Trooky Logo" style="width:130px;">
       </a>
       <button class="navbar-toggler" id="menuButton" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
         <span class="custom-toggler-icon"></span>
@@ -279,7 +279,7 @@
           <li class="nav-item">
             <a href="inscription.html" id="createAccountBtn" class="btn-create">Créer un compte</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item conect">
             <a id="loginBtn" class="btn-login" href="login.html"></a>
           </li>
         </ul>
@@ -311,11 +311,29 @@
         </div>
         <button id="searchBtn" class="button-custom mt-2"></button>
       </div>
-      <div class="col-md-6 text-center">
-        <img src="Trooky.jpg" class="hero-img" alt="Trooky">
+      <div class="col-md-6 text-center custom-margin">
+        <img src="img/Trooky.jpg" class="hero-img" alt="Trooky">
       </div>
     </div>
   </div>
+
+  <style>
+    @media (max-width: 576px) {
+      .custom-margin {
+        margin-top: 20px !important;
+      }
+     
+      .conect{
+        margin-bottom: 10px !important;
+      }
+
+      .navo
+      {
+        border-bottom: 1px solid #f5f5f5;
+      }
+    }
+    
+  </style>
 
   <!-- ABOUT -->
   <section id="aboutTrooky" class="py-5" style="background:#f9f9f9;">
@@ -406,7 +424,7 @@
           <a id="fillBagButton" href="#availableItems" class="btn-orange mt-3"></a>
         </div>
         <div class="col-md-6 text-center">
-          <img src="trookysac.png" alt="Trooky Sac" style="max-width:100%;height:auto;">
+          <img src="img/trookysac.png" alt="Trooky Sac" style="max-width:100%;height:auto;">
         </div>
       </div>
     </div>
@@ -418,17 +436,17 @@
       <h2 id="partnersTitle" class="section-title"></h2>
       <div class="partner-slider mt-4">
         <div class="partner-track">
-          <img src="partner1.png" alt="Parceiro 1">
-          <img src="partner2.png" alt="Parceiro 2">
-          <img src="partner3.png" alt="Parceiro 3">
-          <img src="partner4.png" alt="Parceiro 4">
-          <img src="partner5.png" alt="Parceiro 5">
+          <img src="img/partner1.png" alt="Parceiro 1">
+          <img src="img/partner2.png" alt="Parceiro 2">
+          <img src="img/partner3.png" alt="Parceiro 3">
+          <img src="img/partner4.png" alt="Parceiro 4">
+          <img src="img/partner5.png" alt="Parceiro 5">
           <!-- duplicados para loop -->
-          <img src="partner1.png" alt="Parceiro 1">
-          <img src="partner2.png" alt="Parceiro 2">
-          <img src="partner3.png" alt="Parceiro 3">
-          <img src="partner4.png" alt="Parceiro 4">
-          <img src="partner5.png" alt="Parceiro 5">
+          <img src="img/partner1.png" alt="Parceiro 1">
+          <img src="img/partner2.png" alt="Parceiro 2">
+          <img src="img/partner3.png" alt="Parceiro 3">
+          <img src="img/partner4.png" alt="Parceiro 4">
+          <img src="img/partner5.png" alt="Parceiro 5">
         </div>
       </div>
       <a id="partnersButton" href="store.html" class="btn-store"></a>
@@ -438,7 +456,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="container text-center">
-      <img src="Trooky_logo.png" alt="Trooky Logo" style="width:100px;" class="mb-3">
+      <img src="img/Trooky_logo.png" alt="Trooky Logo" style="width:100px;" class="mb-3">
       <p id="footerCopy"></p>
       <div class="mt-3">
         <a href="#"><i class="material-icons">facebook</i></a>
