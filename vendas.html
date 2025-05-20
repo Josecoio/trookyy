@@ -427,15 +427,32 @@
 
 <!-- SCRIPT -->
 <script>
-  const products = Array.from({ length: 30 }, (_, i) => ({
-    image: "https://source.unsplash.com/400x300/?object," + i,
-    category: ["Mobilité", "Décoration", "Vêtements", "Accessoires", "Technologie", "Livres", "Cuisine", "Sports"][i % 8],
-    title: "Objet #" + (i + 1),
-    price: (i + 3),
-    reserved: false,
-    location: ["Lisbonne", "Paris", "Porto", "Metz"][i % 4],
-    university: ["ISCTE", "Sorbonne", "Université de Porto", "IUT Metz"][i % 4]
-  }));
+const categories = [
+  "Mobilité",
+  "Décoration",
+  "Vêtements",
+  "Accessoires",
+  "Technologie",
+  "Livres",
+  "Cuisine",
+  "Sports"
+];
+
+const locations = ["Lisbonne", "Paris", "Porto", "Metz"];
+const universities = ["ISCTE", "Sorbonne", "Université de Porto", "IUT Metz"];
+
+const products = Array.from({ length: 30 }, (_, i) => ({
+  image: `https://picsum.photos/400/300?random=${i}`,
+  category: categories[i % categories.length],
+  title: `Objet #${i + 1}`,
+  price: i + 3,
+  reserved: false,
+  location: locations[i % locations.length],
+  university: universities[i % universities.length]
+}));
+
+console.log(products);
+
 
   let visibleCount = 8;
 
