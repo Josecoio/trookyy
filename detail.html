@@ -135,56 +135,68 @@
 </head>
 <body>
 
-  <!-- HEADER -->
-  <nav class="navbar fixed-top d-flex justify-content-between align-items-center">
-    <a href="index.html"><img src="Trooky_logo.png" alt="Trooky Logo" style="height: 40px;"></a>
-    <div class="d-flex align-items-center gap-3">
-      <button class="btn btn-orange">Publier</button>
-      <button class="icon-btn-expand" title="Mes réservés" onclick="window.location.href='reserves.html'">
-        <span class="material-symbols-outlined">bookmark</span>
-        <span class="btn-label">Mes réservés</span>
-      </button>
-      <button class="icon-btn-expand" title="Mes publications" onclick="window.location.href='pub.html'">
-        <span class="material-symbols-outlined">outbox</span>
-        <span class="btn-label">Mes publications</span>
-      </button>
-      <button class="icon-btn-expand" title="Messages">
-        <span class="material-symbols-outlined">mail</span>
-        <span class="btn-label">Messages</span>
-      </button>
-      <button class="icon-btn-expand" title="Boutique">
-        <span class="material-symbols-outlined">store</span>
-        <span class="btn-label">Boutique</span>
-      </button>
-      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='quest.html'">
-        <span class="material-symbols-outlined">help</span>
-      </button>
+<!-- NAVBAR PARA TELAS MÉDIAS E MAIORES -->
+<nav class="navbar fixed-top d-none d-md-flex justify-content-between align-items-center">
+  <div>
+    <a href="index.html">
+      <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+    </a>
+  </div>
+  <div class="d-flex align-items-center gap-3">
+    <button class="btn btn-orange">Publier</button>
 
-      
-      <a href="coins.html" style="text-decoration: none;">
-        <div class="coin-display" title="Portefeuille">
-          <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
-          <span class="coin-badge">10 TRC</span>
-        </div>
-      </a>
-      <div class="dropdown">
-        <button class="btn p-0 border-0 bg-transparent d-flex align-items-center gap-2" data-bs-toggle="dropdown">
-          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profil" class="rounded-circle" width="36" height="36" onclick="window.location.href='profil.html'" />
-          <span class="material-symbols-outlined">expand_more</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
-          <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
-          <li><a class="dropdown-item" href="messages.html">Messages</a></li>
-          <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
-          <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
-        </ul>
+    <button class="icon-btn-expand" title="Mes réservés" onclick="window.location.href='reserves.html'">
+      <span class="material-symbols-outlined">bookmark</span>
+      <span class="btn-label">Mes réservés</span>
+    </button>
+
+    <button class="icon-btn-expand" title="Mes publications" onclick="window.location.href='pub.html'">
+      <span class="material-symbols-outlined">outbox</span>
+      <span class="btn-label">Mes publications</span>
+    </button>
+
+    <button class="icon-btn-expand" title="Messages" onclick="window.location.href='Messages.html'">
+      <span class="material-symbols-outlined">mail</span>
+      <span class="btn-label">Messages</span>
+    </button>
+
+    <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='store.html'">
+      <span class="material-symbols-outlined">store</span>
+      <span class="btn-label">Boutique</span>
+    </button>
+
+    <button class="icon-btn-expand" title="help" onclick="window.location.href='quest.html'">
+      <span class="material-symbols-outlined">help</span>
+    </button>
+
+    <a href="coins.html" style="text-decoration: none;">
+      <div class="coin-display" title="Portefeuille">
+        <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
+        <span class="coin-badge">10 TRC</span>
       </div>
-    </div>
-  </nav>
+    </a>
 
-  <!-- NAVBAR PARA TELAS PEQUENAS -->
+    <div class="dropdown">
+      <button class="btn p-0 border-0 bg-transparent d-flex align-items-center gap-2" data-bs-toggle="dropdown">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profil" class="rounded-circle" width="36" height="36" onclick="window.location.href='profil.html'" />
+        <span class="material-symbols-outlined">expand_more</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
+        <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
+        <li><a class="dropdown-item" href="messages.html">Messages</a></li>
+        <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
+        <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
+        <li><a class="dropdown-item" href="store.html">Boutique</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- NAVBAR PARA TELAS PEQUENAS -->
 <nav class="nav-mobile fixed-top d-md-none bg-white px-3 pt-2 pb-1" style="border-bottom: 1px solid #ccc;">
   <div class="nav-mobile__inner d-flex justify-content-between align-items-center">
     <!-- Logo -->
