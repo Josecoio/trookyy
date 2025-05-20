@@ -354,35 +354,67 @@
           <span class="material-symbols-outlined">bookmark</span> Mes Réservés
         </h2>
         
-        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-          <ul class="nav nav-pills mb-2" id="statusFilter">
-            <li class="nav-item">
-              <button class="nav-link active" id="pending-tab-btn" type="button">
-                Réservés <span id="pending-count" class="badge ms-1 custom-badge">(0)</span>
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="nav-link" id="accepted-tab-btn" type="button">
-                Réservations Acceptées <span id="accepted-count" class="badge ms-1 custom-badge">(0)</span>
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="nav-link" id="exchanged-tab-btn" type="button">
-                Échanges <span id="exchanged-count" class="badge ms-1 custom-badge">(0)</span>
-              </button>
-            </li>
-          </ul>
-          
-      
-          <input
-            type="text"
-            class="form-control search-box"
-            id="searchInput"
-            placeholder="Rechercher un objet..."
-            oninput="renderReservations()"
-            style="max-width: 250px;"
-          />
-        </div>
+<!-- Filtro e busca -->
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap filter-bar">
+  <ul class="nav nav-pills mb-2 scroll-tabs" id="statusFilter">
+    <li class="nav-item">
+      <button class="nav-link active" id="pending-tab-btn" type="button">
+        Réservés <span id="pending-count" class="badge ms-1 custom-badge">(0)</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="accepted-tab-btn" type="button">
+        Réservations Acceptées <span id="accepted-count" class="badge ms-1 custom-badge">(0)</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="exchanged-tab-btn" type="button">
+        Échanges <span id="exchanged-count" class="badge ms-1 custom-badge">(0)</span>
+      </button>
+    </li>
+  </ul>
+
+  <input
+    type="text"
+    class="form-control search-box"
+    id="searchInput"
+    placeholder="Rechercher un objet..."
+    oninput="renderReservations()"
+    style="max-width: 250px;"
+  />
+</div>
+
+<!-- Estilos responsivos -->
+<style>
+  @media (max-width: 576px) {
+    .filter-bar {
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+
+    .scroll-tabs {
+      overflow-x: auto;
+      white-space: nowrap;
+      flex-wrap: nowrap !important;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 12px;
+    }
+
+    .scroll-tabs .nav-item {
+      display: inline-block;
+    }
+
+    .scroll-tabs .nav-link {
+      white-space: nowrap;
+    }
+
+    .search-box {
+      width: 100% !important;
+      max-width: none !important;
+    }
+  }
+</style>
+
       
         <!-- DESCRIÇÃO DAS ABAS (melhor design) -->
         <div id="tab-description-container">
