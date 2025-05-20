@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" sizes="32x32" href="Trooky_logo1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
   
   <style>
     body {
@@ -153,6 +153,9 @@
       opacity: 1;
       max-width: 200px;
     }
+
+
+    
   </style>
 </head>
 <body>
@@ -161,7 +164,7 @@
   <nav class="navbar fixed-top d-flex justify-content-between align-items-center">
     <div>
       <a href="index.html">
-        <img src="Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+        <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
       </a>
     </div>
     <div class="d-flex align-items-center gap-3">
@@ -185,12 +188,12 @@
         <span class="btn-label">Messages</span>
       </button>
 
-      <button class="icon-btn-expand" title="Boutique">
+      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='store.html'">
         <span class="material-symbols-outlined">store</span>
-        <span class="btn-label">Boutique</span>
+        <span class="btn-label">TrookyShop</span>
       </button>
 
-      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='quest.html'">
+      <button class="icon-btn-expand" title="aide" onclick="window.location.href='quest.html'">
         <span class="material-symbols-outlined">help</span>
       </button>
       
@@ -220,104 +223,107 @@
     </div>
   </nav>
 
-
-    <!-- NAVBAR PARA TELAS PEQUENAS -->
-<nav class="nav-mobile fixed-top d-md-none bg-white px-3 pt-2 pb-1" style="border-bottom: 1px solid #ccc;">
-  <div class="nav-mobile__inner d-flex justify-content-between align-items-center">
-    <!-- Logo -->
-    <a href="index.html" class="nav-mobile__logo">
-      <img src="img/Trooky_logo.png" alt="Trooky Logo" />
-    </a>
-
-    <!-- Coins & Profile -->
-    <div class="nav-mobile__user d-flex align-items-center gap-2">
-      <a href="coins.html" class="nav-mobile__coins text-decoration-none">
-        <div class="coin-display" title="Portefeuille">
-          <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
-          <span class="coin-badge">10 TRC</span>
-        </div>
+  <!-- NAVBAR PARA TELAS PEQUENAS -->
+  <nav class="nav-mobile fixed-top d-md-none bg-white px-3 pt-2 pb-1" style="border-bottom: 1px solid #ccc;">
+    <div class="nav-mobile__inner d-flex justify-content-between align-items-center">
+      <!-- Logo -->
+      <a href="index.html" class="nav-mobile__logo">
+        <img src="img/Trooky_logo.png" alt="Trooky Logo" />
       </a>
-      
-      <div class="nav-mobile__profile dropdown">
-        <button class="nav-mobile__profile-btn btn p-0 bg-transparent border-0 d-flex align-items-center" data-bs-toggle="dropdown">
-          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Profil" class="rounded-circle" width="36" height="36" />
-          <span class="material-symbols-outlined">expand_more</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
-          <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
-          <li><a class="dropdown-item" href="messages.html">Messages</a></li>
-          <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
-          <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
-          <li><a class="dropdown-item" href="store.html">Boutique</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
-        </ul>
+  
+      <!-- Coins & Profile -->
+      <div class="nav-mobile__user d-flex align-items-center gap-2">
+        <a href="coins.html" class="nav-mobile__coins text-decoration-none">
+          <div class="coin-display" title="Portefeuille">
+            <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
+            <span class="coin-badge">10 TRC</span>
+          </div>
+        </a>
+        
+        <div class="nav-mobile__profile dropdown">
+          <button class="nav-mobile__profile-btn btn p-0 bg-transparent border-0 d-flex align-items-center" data-bs-toggle="dropdown">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Profil" class="rounded-circle" width="36" height="36" />
+            <span class="material-symbols-outlined">expand_more</span>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end shadow-sm mt-2 rounded-3">
+            <li><a class="dropdown-item" href="profil.html">Mon Profil</a></li>
+            <li><a class="dropdown-item" href="messages.html">Messages</a></li>
+            <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
+            <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
+            <li><a class="dropdown-item" href="store.html">TrookyShop</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
+  
+    <!-- Action Buttons -->
+    <div class="nav-mobile__actions d-flex justify-content-center gap-3 mt-4" style="margin-bottom: 10px;">
+      <button class="nav-mobile__btn btn btn-orange">Publier</button>
+      <button class="nav-mobile__icon-btn" title="Mes réservés" onclick="location.href='reserves.html'">
+        <span class="material-symbols-outlined ">bookmark</span>
+      </button>
+      <button class="nav-mobile__icon-btn" title="Mes publications" onclick="location.href='pub.html'">
+        <span class="material-symbols-outlined">outbox</span>
+      </button>
+      <button class="nav-mobile__icon-btn" title="Messages" onclick="location.href='Messages.html'">
+        <span class="material-symbols-outlined">mail</span>
+      </button>
+      <button class="nav-mobile__icon-btn" title="Boutique" onclick="location.href='store.html'">
+        <span class="material-symbols-outlined">store</span>
+      </button>
+      <button class="nav-mobile__icon-btn" title="Aide" onclick="location.href='quest.html'">
+        <span class="material-symbols-outlined">help</span>
+      </button>
+    </div>
+  
+    </nav>
+  
+    <!-- Custom Styles for Spacing & Alignment -->
+    <style>
+  .nav-mobile__icon-btn .material-symbols-outlined {
+    color: #ff681d;
+    font-size: 28px; /* opcional, para aumentar o tamanho */
+  }
+  
+      .nav-mobile {
+        height: auto;
+      }
+      .nav-mobile__inner {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+      }
+      .nav-mobile__logo img {
+        height: 40px;
+      }
+      .nav-mobile__coins-badge img {
+        height: 20px;
+        width: 20px;
+      }
+      .nav-mobile__actions {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .nav-mobile__btn {
+        flex-shrink: 0;
+      }
+      .nav-mobile__icon-btn {
+        background: transparent;
+        border: none;
+        padding: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+    </style>
 
-  <!-- Action Buttons -->
-  <div class="nav-mobile__actions d-flex justify-content-center gap-3 mt-4" style="margin-bottom: 10px;">
-    <button class="nav-mobile__btn btn btn-orange">Publier</button>
-    <button class="nav-mobile__icon-btn" title="Mes réservés" onclick="location.href='reserves.html'">
-      <span class="material-symbols-outlined ">bookmark</span>
-    </button>
-    <button class="nav-mobile__icon-btn" title="Mes publications" onclick="location.href='pub.html'">
-      <span class="material-symbols-outlined">outbox</span>
-    </button>
-    <button class="nav-mobile__icon-btn" title="Messages" onclick="location.href='Messages.html'">
-      <span class="material-symbols-outlined">mail</span>
-    </button>
-    <button class="nav-mobile__icon-btn" title="Boutique" onclick="location.href='store.html'">
-      <span class="material-symbols-outlined">store</span>
-    </button>
-    <button class="nav-mobile__icon-btn" title="Aide" onclick="location.href='quest.html'">
-      <span class="material-symbols-outlined">help</span>
-    </button>
-  </div>
 
-  </nav>
 
-  <!-- Custom Styles for Spacing & Alignment -->
-  <style>
-.nav-mobile__icon-btn .material-symbols-outlined {
-  color: #ff681d;
-  font-size: 28px; /* opcional, para aumentar o tamanho */
-}
 
-    .nav-mobile {
-      height: auto;
-    }
-    .nav-mobile__inner {
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
-    }
-    .nav-mobile__logo img {
-      height: 40px;
-    }
-    .nav-mobile__coins-badge img {
-      height: 20px;
-      width: 20px;
-    }
-    .nav-mobile__actions {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .nav-mobile__btn {
-      flex-shrink: 0;
-    }
-    .nav-mobile__icon-btn {
-      background: transparent;
-      border: none;
-      padding: 0.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-  </style>
 
-  <style>
+<style>
   @media (max-width: 576px) {
     .custom-margin {
       margin-top: 70px !important;
@@ -329,28 +335,30 @@
   
 </style>
 
+
+
   <!-- CONTENU -->
   <div class="container mt-2 custom-margin">
     <h2 class="mb-4 text-center"><span class="material-symbols-outlined">outbox</span> Mes publications</h2>
 
-<div class="row text-center mb-4">
-  <div class="col-12 col-md-4 mb-3">
-    <div class="stat-box">
-      <i class="bi bi-plus-circle"></i><strong>3</strong>Total ajoutés
+    <div class="row text-center mb-4">
+      <div class="col-12 col-md-4 mb-3">
+        <div class="stat-box">
+          <i class="bi bi-plus-circle"></i><strong>3</strong>Total ajoutés
+        </div>
+      </div>
+      <div class="col-12 col-md-4 mb-3">
+        <div class="stat-box">
+          <i class="bi bi-check2"></i><strong>1</strong>Échangés
+        </div>
+      </div>
+      <div class="col-12 col-md-4 mb-3">
+        <div class="stat-box">
+          <i class="bi bi-box"></i><strong>2</strong>Disponibles
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="col-12 col-md-4 mb-3">
-    <div class="stat-box">
-      <i class="bi bi-check2"></i><strong>1</strong>Échangés
-    </div>
-  </div>
-  <div class="col-12 col-md-4 mb-3">
-    <div class="stat-box">
-      <i class="bi bi-box"></i><strong>2</strong>Disponibles
-    </div>
-  </div>
-</div>
-
+    
 
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
       <ul class="nav nav-pills" id="objectTabs">
@@ -375,14 +383,14 @@
     </style>
 
 <!-- === OBJETS DISPONIBLES === -->
-<div id="dispo" class="tab-content" style="margin-bottom: 50px;">
+<div id="dispo" class="tab-content">
   <div class="row g-3" id="dispo-list">
 
     <!-- Mesa de café -->
     <div class="col-md-6 object-card" data-name="Mesa de café">
       <div class="card-object d-flex gap-3 align-items-start">
         <img
-          src="mesa.jpg"
+          src="img/mesa.jpg"
           alt="Mesa de café"
           style="width:100px; height:100px; object-fit:cover; border-radius:8px;"
         />
@@ -420,7 +428,7 @@
     <div class="col-md-6 object-card" data-name="Casaco d’hiver">
       <div class="card-object d-flex gap-3 align-items-start">
         <img
-          src="casaco.png"
+          src="img/casaco.png"
           alt="Casaco d’hiver"
           style="width:100px; height:100px; object-fit:cover; border-radius:8px;"
         />
@@ -474,7 +482,7 @@
     <div class="col-md-6 object-card" data-name="Casaco d’hiver">
       <div class="card-object d-flex gap-3 align-items-start">
         <img
-          src="nike.jpg"
+          src="img/nike.jpg"
           alt="Chassures"
           style="width:100px; height:100px; object-fit:cover; border-radius:8px;"
         />
@@ -514,14 +522,14 @@
 </div>
 
 <!-- === OBJETS ÉCHANGÉS === -->
-<div id="echange" class="tab-content" style="display: none; margin-bottom: 100px;">
+<div id="echange" class="tab-content" style="display: none;">
   <div class="row g-3" id="echange-list">
 
     <!-- Tasse décorative -->
     <div class="col-md-6 object-card" data-name="Tasse décorative">
       <div class="card-object d-flex gap-3 align-items-start">
         <img
-          src="tasse.jpg"
+          src="img/tasse.jpg"
           alt="Tasse décorative"
           style="width:100px; height:100px; object-fit:cover; border-radius:8px;"
         />

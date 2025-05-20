@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" sizes="32x32" href="Trooky_logo1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
 
   
   <style>
@@ -120,7 +120,7 @@
   <nav class="navbar fixed-top d-flex justify-content-between align-items-center">
     <div>
       <a href="index.html">
-        <img src="Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+        <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
       </a>
     </div>
     <div class="d-flex align-items-center gap-3">
@@ -143,7 +143,7 @@
         <span class="btn-label">Messages</span>
       </button>
   
-      <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='quest.html'">
+      <button class="icon-btn-expand" title="help" onclick="window.location.href='quest.html'">
         <span class="material-symbols-outlined">help</span>
       </button>
       
@@ -206,6 +206,23 @@
 </style>
 
 <div class="mb-4">
+<!-- MODE DE PAIEMENT - DESIGN STYLÉ -->
+<div class="mb-4">
+  <label class="form-label fw-semibold">De quelle manière souhaitez-vous recevoir le paiement ?</label>
+  <div id="paiementOptions" class="d-flex flex-wrap gap-3 mt-2">
+    <input type="radio" name="paiement" id="paiementTrooky" value="trooky" checked hidden>
+    <label for="paiementTrooky" class="btn-option selected">Trookycoins</label>
+
+    <input type="radio" name="paiement" id="paiementEuro" value="euro" hidden>
+    <label for="paiementEuro" class="btn-option">Euro (€)</label>
+
+    <input type="radio" name="paiement" id="paiementDollar" value="dollar" hidden>
+    <label for="paiementDollar" class="btn-option">Dollar ($)</label>
+  </div>
+</div>
+
+<!-- SECTION: TROOKYCOINS (CATEGORIE + PRIX) -->
+<div id="sectionTrookycoin">
   <!-- Sélection de catégorie -->
   <div class="mb-3">
     <label class="form-label">Catégorie</label>
@@ -225,23 +242,100 @@
     </select>
   </div>
 
-
-
-
   <!-- Tabela com sous-catégories -->
   <div id="tableContainer" class="mb-3" style="display:none;"></div>
 
-  <!-- Campo de preço (sempre visível) -->
+  <!-- Campo de preço Trookycoins -->
   <div class="mb-3">
     <label class="form-label">Prix souhaité (en trookycoins)</label>
     <p class="text-muted">
-      Afin de promouvoir une économie circulaire sur Trooky, tous les objets sont évalués en <strong>trookycoins</strong>. Veuillez choisir une catégorie ci-dessous pour consulter les types disponibles et leurs prix autorisés.
+      Afin de promouvoir une économie circulaire sur Trooky, tous les objets sont évalués en <strong>trookycoins</strong>.
+      Veuillez choisir une catégorie ci-dessous pour consulter les types disponibles et leurs prix autorisés.
     </p>
     <input type="number" class="form-control" id="prixInput" placeholder="Ex : 25" oninput="verifierPrix()">
     <div class="form-text text-danger" id="erreurPrix" style="display:none;">
       Ce prix est hors de l’intervalle recommandé. Pour mieux promouvoir l’économie circulaire, utilisez un prix dans la plage suggérée.
     </div>
   </div>
+</div>
+
+<!-- SECTION BLOQUÉE POUR EURO / DOLLAR -->
+<div id="sectionBloquee" style="display:none;">
+  <div class="mb-3">
+    <label class="form-label">Prix souhaité</label>
+    <input type="number" class="form-control" placeholder="Ex : 25" readonly>
+    <div class="alert alert-warning mt-3 border border-2 rounded-3 p-3" style="border-color: #ff681d; background-color: #fff7f3; color: #cc5200;">
+      <strong>⚠️ Fonctionnalité bloquée :</strong><br>
+      Pour mettre un prix en <strong>euros ou dollars</strong>, vous devez d’abord débloquer cette option.<br>
+      <a href="#" class="fw-semibold text-decoration-underline" style="color: #ff681d;">Faites la Journée Trooky pour y accéder</a>.
+    </div>
+  </div>
+</div>
+
+<!-- STYLE CUSTOM PARA OS BOTÕES DE OPÇÃO -->
+<style>
+  .btn-option {
+    padding: 10px 18px;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    background-color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+
+  .btn-option:hover {
+    border-color: #ff681d;
+    color: #ff681d;
+  }
+
+  .btn-option.selected {
+    background-color: #ff681d;
+    color: white;
+    border-color: #ff681d;
+  }
+</style>
+
+<!-- SCRIPT DE INTERAÇÃO -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const radioInputs = document.querySelectorAll('input[name="paiement"]');
+    const btnLabels = document.querySelectorAll('.btn-option');
+    const sectionTrooky = document.getElementById("sectionTrookycoin");
+    const sectionBloquee = document.getElementById("sectionBloquee");
+
+    function updateSections() {
+      const selected = document.querySelector('input[name="paiement"]:checked').value;
+
+      btnLabels.forEach(label => label.classList.remove("selected"));
+      document.querySelector(`label[for="paiement${capitalizeFirstLetter(selected)}"]`).classList.add("selected");
+
+      if (selected === "trooky") {
+        sectionTrooky.style.display = "block";
+        sectionBloquee.style.display = "none";
+      } else {
+        sectionTrooky.style.display = "none";
+        sectionBloquee.style.display = "block";
+        document.getElementById("tableContainer").style.display = "none";
+      }
+    }
+
+    function capitalizeFirstLetter(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    radioInputs.forEach(input => {
+      input.addEventListener("change", updateSections);
+    });
+
+    updateSections();
+  });
+</script>
+
+
+  
 </div>
 
 <script>

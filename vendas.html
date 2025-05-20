@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" sizes="32x32" href="Trooky_logo1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/Trooky_logo1.png">
 
 
   <style>
@@ -43,15 +43,35 @@
       font-size: 20px;
     }
     .coin-display {
-      border: 0.5px solid #ff681d;
-      border-radius: 30px;
-      padding: 6px 12px;
-      font-weight: 600;
-      color: #000;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #fff;
+  border: 2px solid #ff681d;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #ff681d;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.coin-display:hover {
+  background-color: #ff681d;
+  color: white;
+}
+
+.coin-display .material-symbols-outlined {
+  font-size: 22px;
+  transition: transform 0.3s ease;
+}
+
+.coin-display:hover .material-symbols-outlined {
+  transform: scale(1.2);
+}
+
+
+
 
     .dropdown-menu {
       min-width: 200px;
@@ -170,6 +190,10 @@
       border-radius: 30%;
       font-size: 18px;
     }
+    .coin-badge:hover {
+      color: white;
+    }
+
 
     .icon-btn-expand {
   background: none;
@@ -214,7 +238,7 @@
 <nav class="navbar fixed-top d-none d-md-flex justify-content-between align-items-center">
   <div>
     <a href="index.html">
-      <img src="Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
+      <img src="img/Trooky_logo.png" alt="Trooky Logo" style="height: 40px;">
     </a>
   </div>
   <div class="d-flex align-items-center gap-3">
@@ -237,18 +261,19 @@
 
     <button class="icon-btn-expand" title="Boutique" onclick="window.location.href='store.html'">
       <span class="material-symbols-outlined">store</span>
-      <span class="btn-label">Boutique</span>
+      <span class="btn-label">TrookyShop</span>
     </button>
 
-    <button class="icon-btn-expand" title="help" onclick="window.location.href='quest.html'">
+    <button class="icon-btn-expand" title="aide" onclick="window.location.href='quest.html'">
       <span class="material-symbols-outlined">help</span>
     </button>
 
     <a href="coins.html" style="text-decoration: none;">
       <div class="coin-display" title="Portefeuille">
-        <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
-        <span class="coin-badge">10 TRC</span>
+        <span class="material-symbols-outlined" style="font-size: 22px;">account_balance_wallet</span>
+        <span class="coin-badge">Mon solde</span>
       </div>
+      
     </a>
 
     <div class="dropdown">
@@ -272,21 +297,19 @@
 
 
 <!-- NAVBAR PARA TELAS PEQUENAS -->
-<!-- Updated Mobile Navbar with BEM Naming and Proper Spacing -->
- 
 <nav class="nav-mobile fixed-top d-md-none bg-white px-3 pt-2 pb-1" style="border-bottom: 1px solid #ccc;">
   <div class="nav-mobile__inner d-flex justify-content-between align-items-center">
     <!-- Logo -->
     <a href="index.html" class="nav-mobile__logo">
-      <img src="Trooky_logo.png" alt="Trooky Logo" />
+      <img src="img/Trooky_logo.png" alt="Trooky Logo" />
     </a>
 
     <!-- Coins & Profile -->
     <div class="nav-mobile__user d-flex align-items-center gap-2">
       <a href="coins.html" class="nav-mobile__coins text-decoration-none">
         <div class="coin-display" title="Portefeuille">
-          <img src="trookycoin-icon.png" alt="TRC" style="height: 25px; width: 25px;" />
-          <span class="coin-badge">10 TRC</span>
+          <span class="material-symbols-outlined" style="font-size: 22px;">account_balance_wallet</span>
+          <span class="coin-badge">Mon solde</span>
         </div>
       </a>
       
@@ -300,7 +323,7 @@
           <li><a class="dropdown-item" href="messages.html">Messages</a></li>
           <li><a class="dropdown-item" href="pub.html">Mes Pubications</a></li>
           <li><a class="dropdown-item" href="reserves.html">Mes Reserves</a></li>
-          <li><a class="dropdown-item" href="store.html">Boutique</a></li>
+          <li><a class="dropdown-item" href="store.html">TrookyShop</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item text-danger" href="#">Se déconnecter</a></li>
         </ul>
@@ -372,7 +395,7 @@
 
 
 <!-- FILTROS -->
-<div class="container filter-wrapper" style="margin-top: 50px;">
+<div class="container mt-5 filter-wrapper">
   <div class="row g-3 align-items-center">
     <div class="col-md">
       <select class="form-select" id="locationSelect">
@@ -405,11 +428,20 @@
         <option value="Sports">Sports</option>
       </select>
     </div>
+    <!-- NOVO FILTRO DE MOEDA -->
+    <div class="col-md">
+      <select class="form-select" id="currencySelect" onchange="renderProducts()">
+        <option value="">Toutes les monnaies</option>
+        <option value="TRC">TrookyCoins (TRC)</option>
+        <option value="EUR">Euros (€)</option>
+      </select>
+    </div>
     <div class="col-md">
       <input type="text" class="form-control" placeholder="Rechercher un objet..." id="searchInput" oninput="renderProducts()" />
     </div>
   </div>
 </div>
+
 
 <!-- LISTE DES PRODUITS -->
 <div class="container mt-4 mb-5"  style="cursor: pointer;">
@@ -419,40 +451,40 @@
   </div>
 </div>
 
+
+<!-- FOOTER -->
 <footer>&copy; 2025 Trooky — Tous droits réservés. 
   <p>Fait avec <span class="material-symbols-outlined">favorite_border</span>
     pour faciliter les échanges entre étudiants.</p>
 </footer>
 
-
 <!-- SCRIPT -->
 <script>
-const categories = [
-  "Mobilité",
-  "Décoration",
-  "Vêtements",
-  "Accessoires",
-  "Technologie",
-  "Livres",
-  "Cuisine",
-  "Sports"
-];
+  const categories = [
+    "Mobilité",
+    "Décoration",
+    "Vêtements",
+    "Accessoires",
+    "Technologie",
+    "Livres",
+    "Cuisine",
+    "Sports"
+  ];
 
-const locations = ["Lisbonne", "Paris", "Porto", "Metz"];
-const universities = ["ISCTE", "Sorbonne", "Université de Porto", "IUT Metz"];
+  const locations = ["Lisbonne", "Paris", "Porto", "Metz"];
+  const universities = ["ISCTE", "Sorbonne", "Université de Porto", "IUT Metz"];
 
-const products = Array.from({ length: 30 }, (_, i) => ({
-  image: `https://picsum.photos/400/300?random=${i}`,
-  category: categories[i % categories.length],
-  title: `Objet #${i + 1}`,
-  price: i + 3,
-  reserved: false,
-  location: locations[i % locations.length],
-  university: universities[i % universities.length]
-}));
-
-console.log(products);
-
+  // Adiciona 'currency' ao objeto do produto
+  const products = Array.from({ length: 30 }, (_, i) => ({
+    image: `https://picsum.photos/400/300?random=${i}`,
+    category: categories[i % categories.length],
+    title: `Objet #${i + 1}`,
+    price: i + 3,
+    currency: i % 2 === 0 ? "TRC" : "EUR", // Alternando entre TRC e EUR
+    reserved: false,
+    location: locations[i % locations.length],
+    university: universities[i % universities.length]
+  }));
 
   let visibleCount = 8;
 
@@ -464,12 +496,14 @@ console.log(products);
     const location = document.getElementById("locationSelect").value;
     const category = document.getElementById("categorySelect").value;
     const university = document.getElementById("universitySelect").value;
+    const currency = document.getElementById("currencySelect")?.value; // Safe check
 
     const filtered = products.filter(p =>
       !p.reserved &&
       (!location || p.location === location) &&
       (!category || p.category === category) &&
       (!university || p.university === university) &&
+      (!currency || p.currency === currency) &&
       (!search || p.title.toLowerCase().includes(search))
     );
 
@@ -481,6 +515,13 @@ console.log(products);
     filtered.slice(0, visibleCount).forEach(p => {
       const div = document.createElement("div");
       div.className = "col-md-3 col-sm-6";
+
+      // Diferenciar TRC e EUR na visualização
+      const priceHTML =
+        p.currency === "TRC"
+          ? `<div class="product-price"><img src="trookycoin-icon.png" alt="TRC"> ${p.price} TRC</div>`
+          : `<div class="product-price">€ ${p.price}</div>`;
+
       div.innerHTML = `
         <div class="product-card">
           <img src="${p.image}" class="product-img" onerror="this.outerHTML='<div class=\\'img-error\\'>Fichier non disponible</div>'" />
@@ -488,10 +529,7 @@ console.log(products);
             <div class="product-category">${p.category}</div>
             <div class="product-title">${p.title}</div>
             <div class="product-location"><span class="material-symbols-outlined">location_on</span> ${p.location}</div>
-            <div class="product-price">
-              <img src="trookycoin-icon.png" alt="TRC">
-              ${p.price} TRC
-            </div>
+            ${priceHTML}
           </div>
         </div>
       `;
@@ -548,6 +586,7 @@ console.log(products);
     renderProducts();
   };
 </script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
